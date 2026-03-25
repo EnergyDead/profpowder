@@ -1,3 +1,5 @@
+import { useMemo, useState } from 'react';
+
 const benefits = [
   {
     number: '1',
@@ -44,7 +46,74 @@ const prices = [
   }
 ];
 
+const categories = ['Все', 'Диски', 'Ограждения', 'Детали', 'Мебель'];
+
+const workPairs = [
+  {
+    category: 'Диски',
+    before: 'https://placehold.co/606x284/4a4a4a/E8E8E8?text=Диски+до',
+    after: 'https://placehold.co/606x284/6a6a6a/E8E8E8?text=Диски+после'
+  },
+  {
+    category: 'Ограждения',
+    before: 'https://placehold.co/606x284/4f565c/E8E8E8?text=Ограждения+до',
+    after: 'https://placehold.co/606x284/687178/E8E8E8?text=Ограждения+после'
+  },
+  {
+    category: 'Детали',
+    before: 'https://placehold.co/606x284/454545/E8E8E8?text=Детали+до',
+    after: 'https://placehold.co/606x284/616161/E8E8E8?text=Детали+после'
+  },
+  {
+    category: 'Мебель',
+    before: 'https://placehold.co/606x284/3d4450/E8E8E8?text=Мебель+до',
+    after: 'https://placehold.co/606x284/5d6673/E8E8E8?text=Мебель+после'
+  }
+];
+
+const partners = [
+  { category: 'Диски', name: 'Disk Service', logo: 'DS' },
+  { category: 'Ограждения', name: 'Steel Guard', logo: 'SG' },
+  { category: 'Детали', name: 'MetaLine', logo: 'ML' },
+  { category: 'Мебель', name: 'Loft Home', logo: 'LH' },
+  { category: 'Диски', name: 'R17 Center', logo: 'R17' },
+  { category: 'Ограждения', name: 'FencePro', logo: 'FP' }
+];
+
+const activeFilterClass =
+  'bg-[radial-gradient(ellipse_89.93%_82.48%_at_36.11%_34.00%,_#F2861F_0%,_#EB8121_19%,_#E57C22_39%,_#893F16_100%)] border-transparent';
+
+const baseFilterClass = 'border border-black/80 bg-transparent hover:border-white/40';
+
 function App() {
+  const [workCategory, setWorkCategory] = useState('Все');
+  const [partnerCategory, setPartnerCategory] = useState('Все');
+  const [workIndex, setWorkIndex] = useState(0);
+
+  const filteredWorks = useMemo(
+    () => (workCategory === 'Все' ? workPairs : workPairs.filter((item) => item.category === workCategory)),
+    [workCategory]
+  );
+
+  const filteredPartners = useMemo(
+    () =>
+      partnerCategory === 'Все'
+        ? partners
+        : partners.filter((item) => item.category === partnerCategory),
+    [partnerCategory]
+  );
+
+  const currentWork = filteredWorks[workIndex % filteredWorks.length] ?? workPairs[0];
+
+  const showNextWork = () => {
+    setWorkIndex((prev) => (prev + 1) % filteredWorks.length);
+  };
+
+  const selectWorkCategory = (category) => {
+    setWorkCategory(category);
+    setWorkIndex(0);
+  };
+
   return (
     <div className="bg-[#06090d] text-gray-200 font-['Montserrat']">
       <section
@@ -181,7 +250,77 @@ function App() {
       </section>
 
       <section id="works" className="mx-auto max-w-[1240px] px-6 pb-24 pt-24 lg:px-8">
-        <h3 className="text-center text-base font-semibold leading-6">Наши работы</h3>
+        <h3 className="text-center text-4xl font-semibold leading-8">Наши работы</h3>
+        <p className="mt-6 text-center text-base font-normal leading-3 text-gray-200">
+          Посмотрите наши работы: оцените результат до и после покраски
+        </p>
+
+        <div className="mt-10 flex flex-wrap justify-center gap-3">
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => selectWorkCategory(category)}
+              className={`h-14 rounded-[5px] px-7 py-4 text-lg font-semibold leading-6 shadow-[0_4px_4px_rgba(0,0,0,0.25)] transition ${workCategory === category ? activeFilterClass : baseFilterClass}`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+
+        <div className="mt-9 grid items-center gap-6 lg:grid-cols-[1fr_auto_1fr]">
+          <article className="overflow-hidden rounded border border-black bg-black/40">
+            <img src={currentWork.before} alt={`До покраски (${currentWork.category})`} className="h-72 w-full object-cover" />
+            <div className="flex h-12 items-center justify-center border-t border-black px-4">
+              <p className="text-center text-lg font-semibold leading-4">ДО порошковой покраски</p>
+            </div>
+          </article>
+
+          <button
+            onClick={showNextWork}
+            aria-label="Показать следующую пару"
+            className="mx-auto flex h-20 w-20 items-center justify-center rounded-full border border-black bg-black text-3xl font-semibold text-[#D9D9D9] transition hover:scale-105 hover:text-white"
+          >
+            ›
+          </button>
+
+          <article className="overflow-hidden rounded border border-black bg-black/40">
+            <img src={currentWork.after} alt={`После покраски (${currentWork.category})`} className="h-72 w-full object-cover" />
+            <div className="flex h-12 items-center justify-center border-t border-black px-4">
+              <p className="text-center text-lg font-semibold leading-4">ПОСЛЕ порошковой покраски</p>
+            </div>
+          </article>
+        </div>
+
+        <h3 className="mt-12 text-center text-4xl font-semibold leading-8">Наши партнеры</h3>
+
+        <div className="mt-10 flex flex-wrap justify-center gap-3">
+          {categories.map((category) => (
+            <button
+              key={`partner-${category}`}
+              onClick={() => setPartnerCategory(category)}
+              className={`h-14 rounded-[5px] px-7 py-4 text-lg font-semibold leading-6 shadow-[0_4px_4px_rgba(0,0,0,0.25)] transition ${partnerCategory === category ? activeFilterClass : baseFilterClass}`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {filteredPartners.map((partner) => (
+            <article
+              key={`${partner.name}-${partner.category}`}
+              className="flex h-24 items-center gap-4 rounded border border-black bg-[#000000] px-4"
+            >
+              <div className="flex h-14 w-14 items-center justify-center rounded bg-[#D9D9D9] text-sm font-semibold text-black">
+                {partner.logo}
+              </div>
+              <div>
+                <p className="text-lg font-semibold leading-6">{partner.name}</p>
+                <p className="text-sm text-gray-400">{partner.category}</p>
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
     </div>
   );
