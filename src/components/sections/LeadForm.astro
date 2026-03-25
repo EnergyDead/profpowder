@@ -1,9 +1,5 @@
 ---
 import Container from '@/components/ui/Container.astro';
-import InputField from '@/components/ui/InputField.astro';
-import TextAreaField from '@/components/ui/TextAreaField.astro';
-import PrimaryButton from '@/components/ui/PrimaryButton.astro';
-import { formLabels } from '@/data/site';
 
 const leadBenefits = [
   'Бесплатно\nуточним стоимость',
@@ -37,28 +33,70 @@ const leadBenefits = [
       </ul>
     </div>
 
-    <form class="ui-surface grid gap-4 p-5 sm:p-6 md:grid-cols-2" action="#" method="post">
-      <InputField id="lead-name" label={formLabels.fields.name.label} placeholder={formLabels.fields.name.placeholder} />
-      <InputField id="lead-phone" label={formLabels.fields.phone.label} placeholder={formLabels.fields.phone.placeholder} type="tel" />
-      <TextAreaField
-        id="lead-comment"
-        label={formLabels.fields.comment.label}
-        placeholder={formLabels.fields.comment.placeholder}
-        class="md:col-span-2"
-      />
+    <div class="flex justify-center">
+      <form
+        class="w-full max-w-[595.77px] rounded-[5px] border border-[rgba(50,56,68,0.85)] bg-[rgba(9,12,18,0.82)] px-10 py-9 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] backdrop-blur-sm min-h-[676px]"
+        action="#"
+        method="post"
+      >
+        <div class="space-y-5">
+          <label for="lead-name" class="block space-y-2">
+            <span class="block text-[16px] leading-6 font-medium text-[#D6DCE8]">Ваше имя*</span>
+            <input
+              id="lead-name"
+              name="name"
+              type="text"
+              class="h-12 w-full rounded-[5px] border border-[rgba(58,63,75,0.95)] bg-[rgba(11,15,22,0.76)] px-4 text-[16px] text-[#E7EBF3] outline-none transition focus:border-[rgba(242,134,31,0.85)]"
+              placeholder="Введите ваше имя"
+            />
+          </label>
 
-      <label for="lead-file" class="block space-y-2 md:col-span-2">
-        <span class="text-xs uppercase tracking-[0.12em] text-[var(--color-muted)]">{formLabels.fields.file.label}</span>
-        <input
-          id="lead-file"
-          type="file"
-          class="ui-control ui-focus file:mr-3 file:rounded-md file:border-0 file:bg-[var(--color-accent)] file:px-3 file:py-2 file:text-sm file:font-medium file:text-[#17120c]"
-        />
-      </label>
+          <label for="lead-phone" class="block space-y-2">
+            <span class="block text-[16px] leading-6 font-medium text-[#D6DCE8]">Телефон*</span>
+            <input
+              id="lead-phone"
+              name="phone"
+              type="tel"
+              class="h-12 w-full rounded-[5px] border border-[rgba(58,63,75,0.95)] bg-[rgba(11,15,22,0.76)] px-4 text-[16px] text-[#E7EBF3] outline-none transition focus:border-[rgba(242,134,31,0.85)]"
+              placeholder="+7 (___) ___-__-__"
+            />
+          </label>
 
-      <div class="md:col-span-2">
-        <PrimaryButton label={formLabels.submitButton} type="submit" class="w-full sm:w-auto" />
-      </div>
-    </form>
+          <label for="lead-comment" class="block space-y-2">
+            <span class="block text-[16px] leading-6 font-medium text-[#D6DCE8]">Комментарии</span>
+            <textarea
+              id="lead-comment"
+              name="comment"
+              class="h-[112px] w-full resize-none rounded-[5px] border border-[rgba(58,63,75,0.95)] bg-[rgba(11,15,22,0.76)] px-4 py-3 text-[16px] text-[#E7EBF3] outline-none transition focus:border-[rgba(242,134,31,0.85)]"
+              placeholder="Введите комментарий"
+            ></textarea>
+          </label>
+
+          <div class="space-y-2">
+            <span class="block text-[16px] leading-6 font-medium text-[#D6DCE8]">Прикрепить фото</span>
+            <label
+              for="lead-file"
+              class="relative flex h-12 w-full max-w-[288px] cursor-pointer items-center justify-between overflow-hidden rounded-[5px] border border-[rgba(58,63,75,0.95)] bg-[rgba(11,15,22,0.76)] px-4 text-[#E7EBF3]"
+            >
+              <span
+                class="pointer-events-none absolute inset-0 opacity-45"
+                style="background:radial-gradient(140% 100% at 0% 0%, rgba(242, 134, 31, 0.28) 0%, rgba(242, 134, 31, 0) 70%);"
+              ></span>
+              <span class="relative z-10 text-[24px] leading-none font-medium">+</span>
+              <span class="relative z-10 text-[16px] leading-6 font-medium">Прикрепить фото</span>
+            </label>
+            <input id="lead-file" name="photo" type="file" class="sr-only" />
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="mt-9 flex h-20 w-full max-w-[482px] items-center justify-center rounded-[5px] text-center text-[36px] leading-none font-semibold text-[#F7FAFF] shadow-[0_4px_4px_rgba(0,0,0,0.25)]"
+          style="background:radial-gradient(129.81% 147.43% at 14.02% 12.5%, #F2861F 0%, #EB8121 36%, #E57C22 65%, #893F16 100%);"
+        >
+          Заказать расчет
+        </button>
+      </form>
+    </div>
   </Container>
 </section>
