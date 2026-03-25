@@ -1,16 +1,12 @@
 ---
 import Container from '@/components/ui/Container.astro';
 import PrimaryButton from '@/components/ui/PrimaryButton.astro';
-import { heroBenefits, navItems, site } from '@/data/site';
+import { hero, menu, site } from '@/data/site';
 ---
 
 <section id="hero" class="relative overflow-hidden">
   <div class="absolute inset-0">
-    <img
-      src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1920&q=80"
-      alt="Цех порошковой покраски"
-      class="h-full w-full object-cover"
-    />
+    <img src={hero.image.src} alt={hero.image.alt} class="h-full w-full object-cover" />
     <div class="absolute inset-0 bg-[#06080d]/80"></div>
     <div class="absolute inset-0 bg-gradient-to-b from-[#0a0d14]/55 via-[#0a0d14]/75 to-[#090a0d]"></div>
   </div>
@@ -18,8 +14,8 @@ import { heroBenefits, navItems, site } from '@/data/site';
   <Container class="relative z-10 py-6 pb-16 sm:py-8 sm:pb-24">
     <header class="flex flex-col gap-5 border-b border-white/10 pb-6 sm:flex-row sm:items-center sm:justify-between">
       <a href="#hero" class="text-lg font-semibold tracking-[0.14em] text-white">{site.name}</a>
-      <nav aria-label="Основная навигация" class="flex flex-wrap gap-2 sm:justify-end">
-        {navItems.map((item) => (
+      <nav aria-label={menu.ariaLabel} class="flex flex-wrap gap-2 sm:justify-end">
+        {menu.items.map((item) => (
           <a href={item.href} class="ui-button border border-white/15 bg-white/5 px-3 py-2 text-xs text-white/90 hover:border-white/30 hover:bg-white/10">
             {item.label}
           </a>
@@ -28,20 +24,16 @@ import { heroBenefits, navItems, site } from '@/data/site';
     </header>
 
     <div class="mt-10 max-w-3xl space-y-6 sm:mt-16">
-      <h1 class="text-3xl font-semibold leading-tight tracking-tight text-white sm:text-5xl">
-        Порошковая покраска металла под ключ для частных и промышленных задач
-      </h1>
-      <p class="text-base text-white/75 sm:text-lg">
-        Подготавливаем поверхность, наносим покрытие и контролируем качество в собственном цехе. Работаем по договору и соблюдаем сроки.
-      </p>
+      <h1 class="text-3xl font-semibold leading-tight tracking-tight text-white sm:text-5xl">{hero.title}</h1>
+      <p class="text-base text-white/75 sm:text-lg">{hero.subtitle}</p>
 
       <ul class="grid gap-2 text-sm text-white/90 sm:grid-cols-3 sm:gap-3">
-        {heroBenefits.map((item) => (
+        {hero.benefits.map((item) => (
           <li class="rounded-[var(--radius-ui)] border border-white/20 bg-white/5 px-4 py-3">{item}</li>
         ))}
       </ul>
 
-      <PrimaryButton label="Получить расчёт" class="w-full sm:w-auto" />
+      <PrimaryButton label={hero.ctaLabel} class="w-full sm:w-auto" />
     </div>
   </Container>
 </section>

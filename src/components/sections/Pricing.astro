@@ -8,13 +8,13 @@ import { pricing } from '@/data/site';
 <section id="pricing" class="py-12 sm:py-16">
   <Container class="space-y-8">
     <SectionTitle
-      eyebrow="Прайс"
-      title="Тарифы под объём и задачу"
-      subtitle="Стоимость зависит от подготовки, геометрии изделия и объёма партии."
+      eyebrow={pricing.section.eyebrow}
+      title={pricing.section.title}
+      subtitle={pricing.section.subtitle}
     />
 
     <div class="grid gap-4 lg:grid-cols-3">
-      {pricing.map((plan) => (
+      {pricing.plans.map((plan) => (
         <PriceCard planName={plan.planName} price={plan.price} period={plan.period} />
       ))}
     </div>

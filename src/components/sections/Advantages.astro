@@ -8,13 +8,13 @@ import { advantages } from '@/data/site';
 <section id="advantages" class="py-12 sm:py-16">
   <Container class="space-y-8">
     <SectionTitle
-      eyebrow="Преимущества"
-      title="Почему выбирают ПрофПорошок"
-      subtitle="Работаем с понятными сроками, контролем качества на каждом этапе и прозрачным прайсом."
+      eyebrow={advantages.section.eyebrow}
+      title={advantages.section.title}
+      subtitle={advantages.section.subtitle}
     />
 
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      {advantages.map((item) => (
+      {advantages.cards.map((item) => (
         <FeatureCard title={`${item.value} — ${item.title}`} description={item.description} />
       ))}
     </div>

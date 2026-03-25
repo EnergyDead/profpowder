@@ -2,31 +2,31 @@
 import Container from '@/components/ui/Container.astro';
 import SectionTitle from '@/components/ui/SectionTitle.astro';
 import SecondaryButton from '@/components/ui/SecondaryButton.astro';
-import { site } from '@/data/site';
+import { contacts, site } from '@/data/site';
 ---
 
 <section id="contacts" class="py-12 sm:py-16">
   <Container class="space-y-8">
     <SectionTitle
-      eyebrow="Контакты"
-      title="Приезжайте в цех или оставьте заявку"
-      subtitle="Работаем ежедневно. Предварительный расчёт можно получить по фото или чертежу."
+      eyebrow={contacts.section.eyebrow}
+      title={contacts.section.title}
+      subtitle={contacts.section.subtitle}
     />
 
     <div class="grid gap-4 lg:grid-cols-2">
       <article class="ui-surface space-y-4 p-6">
-        <p class="text-sm text-[var(--color-muted)]">Телефон</p>
+        <p class="text-sm text-[var(--color-muted)]">{contacts.phoneLabel}</p>
         <a href={`tel:${site.phone}`} class="text-xl font-semibold text-[var(--color-text)]">{site.phone}</a>
-        <p class="pt-2 text-sm text-[var(--color-muted)]">Email</p>
+        <p class="pt-2 text-sm text-[var(--color-muted)]">{contacts.emailLabel}</p>
         <a href={`mailto:${site.email}`} class="text-base text-[var(--color-text)]">{site.email}</a>
-        <p class="pt-2 text-sm text-[var(--color-muted)]">Адрес</p>
+        <p class="pt-2 text-sm text-[var(--color-muted)]">{contacts.addressLabel}</p>
         <p class="text-base text-[var(--color-text)]">{site.address}</p>
-        <SecondaryButton label="Построить маршрут" class="mt-3 w-full sm:w-auto" />
+        <SecondaryButton label={contacts.routeButton} class="mt-3 w-full sm:w-auto" />
       </article>
 
-      <div class="ui-surface flex min-h-72 items-center justify-center p-6 text-center text-sm text-[var(--color-muted)]">
-        Блок карты (заглушка).<br />
-        Интеграцию карты подключим на следующем этапе.
+      <div class="ui-surface flex min-h-72 flex-col items-center justify-center p-6 text-center text-sm text-[var(--color-muted)]">
+        <p>{contacts.mapPlaceholderTitle}</p>
+        <p>{contacts.mapPlaceholderSubtitle}</p>
       </div>
     </div>
   </Container>

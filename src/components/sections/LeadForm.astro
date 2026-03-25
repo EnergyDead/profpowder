@@ -4,30 +4,35 @@ import SectionTitle from '@/components/ui/SectionTitle.astro';
 import InputField from '@/components/ui/InputField.astro';
 import TextAreaField from '@/components/ui/TextAreaField.astro';
 import PrimaryButton from '@/components/ui/PrimaryButton.astro';
-import { leadBenefits } from '@/data/site';
+import { formLabels } from '@/data/site';
 ---
 
 <section id="lead-form" class="py-12 sm:py-16">
   <Container class="space-y-8">
     <SectionTitle
-      eyebrow="Заявка"
-      title="Отправьте запрос на расчёт"
-      subtitle="Заполните форму — менеджер свяжется с вами, уточнит детали и стоимость работ."
+      eyebrow={formLabels.section.eyebrow}
+      title={formLabels.section.title}
+      subtitle={formLabels.section.subtitle}
     />
 
     <ul class="grid gap-3 text-sm text-[var(--color-text)] sm:grid-cols-2 lg:grid-cols-4">
-      {leadBenefits.map((benefit) => (
+      {formLabels.benefits.map((benefit) => (
         <li class="ui-surface p-4">{benefit}</li>
       ))}
     </ul>
 
     <form class="ui-surface grid gap-4 p-5 sm:p-6 md:grid-cols-2" action="#" method="post">
-      <InputField id="lead-name" label="Имя" placeholder="Как к вам обращаться" />
-      <InputField id="lead-phone" label="Телефон" placeholder="+7 (___) ___-__-__" type="tel" />
-      <TextAreaField id="lead-comment" label="Комментарий" placeholder="Опишите задачу, размеры и желаемый цвет" class="md:col-span-2" />
+      <InputField id="lead-name" label={formLabels.fields.name.label} placeholder={formLabels.fields.name.placeholder} />
+      <InputField id="lead-phone" label={formLabels.fields.phone.label} placeholder={formLabels.fields.phone.placeholder} type="tel" />
+      <TextAreaField
+        id="lead-comment"
+        label={formLabels.fields.comment.label}
+        placeholder={formLabels.fields.comment.placeholder}
+        class="md:col-span-2"
+      />
 
       <label for="lead-file" class="block space-y-2 md:col-span-2">
-        <span class="text-xs uppercase tracking-[0.12em] text-[var(--color-muted)]">Файл / чертёж</span>
+        <span class="text-xs uppercase tracking-[0.12em] text-[var(--color-muted)]">{formLabels.fields.file.label}</span>
         <input
           id="lead-file"
           type="file"
@@ -36,7 +41,7 @@ import { leadBenefits } from '@/data/site';
       </label>
 
       <div class="md:col-span-2">
-        <PrimaryButton label="Отправить заявку" type="submit" class="w-full sm:w-auto" />
+        <PrimaryButton label={formLabels.submitButton} type="submit" class="w-full sm:w-auto" />
       </div>
     </form>
   </Container>
