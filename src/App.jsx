@@ -384,16 +384,16 @@ function App() {
         </div>
       </section>
 
-      <footer className="bg-[#070b10] px-6 pb-16 pt-4 lg:px-8">
-        <div className="mx-auto flex max-w-[1240px] flex-col items-center">
-          <div className="w-full max-w-[596px] rounded-[5px] border border-gray-400/60 bg-black/25 px-10 pb-14 pt-10 md:px-12">
+      <footer className="border-t border-black/80 bg-[#070b10]">
+        <div className="mx-auto grid max-w-[1240px] gap-8 px-6 py-14 lg:grid-cols-[minmax(0,596px)_1fr] lg:items-end lg:px-8">
+          <div className="relative rounded-[5px] border border-black p-12">
             <label className="block text-base font-medium leading-7 text-gray-200" htmlFor="order-name">
               Ваше имя*
             </label>
             <input
               id="order-name"
               type="text"
-              className="mt-3 h-12 w-full rounded-[5px] border border-gray-400/70 bg-transparent px-4 text-base text-gray-100 outline-none placeholder:text-gray-400/80 focus:border-[#EB8121]"
+              className="mt-2 h-12 w-full rounded-[5px] border border-black bg-transparent px-4 text-base text-gray-100 outline-none placeholder:text-gray-400/80 focus:border-[#EB8121]"
             />
 
             <label className="mt-8 block text-base font-medium leading-7 text-gray-200" htmlFor="order-phone">
@@ -402,7 +402,7 @@ function App() {
             <input
               id="order-phone"
               type="tel"
-              className="mt-3 h-12 w-full rounded-[5px] border border-gray-400/70 bg-transparent px-4 text-base text-gray-100 outline-none placeholder:text-gray-400/80 focus:border-[#EB8121]"
+              className="mt-2 h-12 w-full rounded-[5px] border border-black bg-transparent px-4 text-base text-gray-100 outline-none placeholder:text-gray-400/80 focus:border-[#EB8121]"
             />
 
             <label className="mt-8 block text-base font-medium leading-7 text-gray-200" htmlFor="order-comment">
@@ -411,32 +411,37 @@ function App() {
             <textarea
               id="order-comment"
               rows={4}
-              className="mt-3 w-full resize-none rounded-[5px] border border-gray-400/70 bg-transparent p-4 text-base text-gray-100 outline-none placeholder:text-gray-400/80 focus:border-[#EB8121]"
+              className="mt-2 w-full resize-none rounded-[5px] border border-black bg-transparent p-4 text-base text-gray-100 outline-none placeholder:text-gray-400/80 focus:border-[#EB8121]"
             />
 
             <label
               htmlFor="order-photo"
-              className="mt-4 flex h-12 w-full max-w-[320px] cursor-pointer items-center rounded-[5px] border border-gray-400/70 bg-transparent px-5"
+              className="mt-8 flex h-12 w-full cursor-pointer items-center rounded-[5px] border border-black bg-[radial-gradient(ellipse_70.36%_68.52%_at_36.11%_34.00%,_#F2861F_0%,_#EB8121_19%,_#E57C22_39%,_#893F16_100%)] px-5"
             >
-              <span className="text-4xl font-medium leading-7 text-[#F2861F]">+</span>
+              <span className="text-3xl font-medium leading-7 text-white">+</span>
               <span className="ml-6 text-base font-medium leading-7 text-gray-200">Прикрепить фото</span>
             </label>
             <input id="order-photo" type="file" className="hidden" />
 
-            <button className="mt-[96px] inline-flex h-20 w-full items-center justify-center rounded-[5px] bg-[radial-gradient(ellipse_89.93%_82.48%_at_36.11%_34.00%,_#F2861F_0%,_#EB8121_19%,_#E57C22_39%,_#893F16_100%)] px-7 py-4 text-center text-4xl font-semibold leading-6 text-gray-200 shadow-[0_4px_4px_rgba(0,0,0,0.25)] transition hover:brightness-110">
+            <button className="mt-10 inline-flex h-20 w-full items-center justify-center rounded-[5px] bg-[radial-gradient(ellipse_89.93%_82.48%_at_36.11%_34.00%,_#F2861F_0%,_#EB8121_19%,_#E57C22_39%,_#893F16_100%)] px-7 py-4 text-center text-4xl font-semibold leading-6 text-gray-200 shadow-[0_4px_4px_rgba(0,0,0,0.25)] transition hover:brightness-110">
               Заказать расчет
             </button>
           </div>
 
-          <div className="mt-8 flex flex-col items-center">
-            <a href="#hero" className="flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center rounded border-4 border-gray-300 text-3xl font-black leading-none text-gray-200">
-                П
-              </span>
-              <p className="text-xl font-bold leading-5 text-gray-200">ПРОФИ ПОРОШОК</p>
+          <div className="flex flex-col items-center gap-10 pb-2 lg:items-start">
+            <a href="#hero" className="relative h-20 w-72">
+              <div className="absolute left-[9px] top-[56.61px] h-10 w-20 origin-top-left -rotate-[47.35deg] bg-zinc-300" />
+              <div className="absolute left-0 top-[56.61px] h-10 w-20 origin-top-left -rotate-[47.35deg] bg-zinc-300" />
+              <div className="absolute left-[36px] top-[34px] flex h-10 w-10 items-center justify-center rounded border-4 border-black">
+                <div className="h-7 w-6 bg-gradient-to-br from-stone-300 to-neutral-800" />
+                <span className="absolute text-2xl font-black leading-4 text-gray-200">П</span>
+              </div>
+              <p className="absolute left-[85px] top-[44px] text-center text-xl font-bold leading-5 text-gray-200">
+                ПРОФИ ПОРОШОК
+              </p>
             </a>
 
-            <p className="mt-8 text-center text-xl font-medium leading-6 text-gray-200">
+            <p className="text-center text-xl font-medium leading-6 text-gray-200 lg:text-left">
               © 2026 ПОРФИ ПОРШОК
               <br />
               Все права защищены
