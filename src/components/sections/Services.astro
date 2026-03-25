@@ -1,21 +1,40 @@
 ---
 import Container from '@/components/ui/Container.astro';
-import SectionTitle from '@/components/ui/SectionTitle.astro';
-import CategoryCard from '@/components/ui/CategoryCard.astro';
-import { serviceCategories } from '@/data/site';
+
+const paintCategories = [
+  'Металлопрокат',
+  'Ограждения и ворота',
+  'Автомобильные диски и мото детали',
+  'Мебель'
+];
+
+const placeholderImage = '/images/hero-placeholder.svg';
 ---
 
-<section id="services" class="py-12 sm:py-16">
-  <Container class="space-y-8">
-    <SectionTitle
-      eyebrow={serviceCategories.section.eyebrow}
-      title={serviceCategories.section.title}
-      subtitle={serviceCategories.section.subtitle}
-    />
+<section id="services" class="bg-[#090a0d] py-16 lg:py-20">
+  <Container class="max-w-[1240px] space-y-10">
+    <div class="mx-auto max-w-4xl space-y-4 text-center">
+      <h2 class="text-4xl font-semibold text-[var(--color-text)]">Что красим</h2>
+      <p class="text-base font-normal text-[var(--color-muted)]">
+        Красим любые металлические изделия — от автомобильных дисков до крупных конструкций
+      </p>
+    </div>
 
-    <div class="grid gap-4 sm:grid-cols-2">
-      {serviceCategories.items.map((service) => (
-        <CategoryCard title={service.title} countLabel={service.countLabel} image={service.image} />
+    <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+      {paintCategories.map((category) => (
+        <article class="mx-auto grid h-[264px] w-full max-w-[288px] grid-rows-[1fr_auto] overflow-hidden rounded-xl border border-[rgba(231,235,243,0.14)] bg-[#111319]">
+          <div class="h-full w-full overflow-hidden">
+            <img
+              src={placeholderImage}
+              alt={category}
+              loading="lazy"
+              class="h-full w-full object-cover"
+            />
+          </div>
+          <div class="flex min-h-[72px] items-center justify-center border-t border-[rgba(231,235,243,0.14)] px-4 py-3 text-center">
+            <h3 class="text-center text-[18px] leading-[16px] font-semibold text-[var(--color-text)]">{category}</h3>
+          </div>
+        </article>
       ))}
     </div>
   </Container>
