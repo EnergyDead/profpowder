@@ -3,7 +3,11 @@ import Container from '@/components/ui/Container.astro';
 import { advantages } from '@/data/site';
 ---
 
-<section id="advantages" class="bg-[#060709] py-16 lg:py-24">
+<section
+  id="advantages"
+  class="bg-[#060709] bg-cover bg-center bg-no-repeat py-16 lg:py-24"
+  style="background-image:url('/images/bg-2.png');"
+>
   <Container class="max-w-[1238px] px-6">
     <div class="mx-auto flex w-full max-w-[1238px] flex-col items-center">
       <h2 class="text-center text-[36px] leading-8 font-semibold text-[#E7EBF3]">{advantages.section.title}</h2>

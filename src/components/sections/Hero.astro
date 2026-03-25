@@ -4,7 +4,11 @@ import { hero } from '@/data/site';
 ---
 
 <section id="hero" class="relative min-h-[92svh] overflow-hidden bg-[#060709]">
-  <div class="absolute inset-0 bg-cover bg-center" style={`background-image:url(${hero.image.src})`} aria-hidden="true"></div>
+  <div
+    class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+    style="background-image:url('/images/bg-1.png');"
+    aria-hidden="true"
+  ></div>
   <div class="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,7,9,0.95)_0%,rgba(5,7,9,0.86)_48%,rgba(5,7,9,0.72)_100%)]" aria-hidden="true"></div>
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_18%_32%,rgba(242,134,31,0.2),transparent_42%)]" aria-hidden="true"></div>
 
