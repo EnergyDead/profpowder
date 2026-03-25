@@ -111,14 +111,13 @@ export const serviceCategories = {
 
 export const pricing = {
   section: {
-    eyebrow: 'Цены',
-    title: 'Прозрачная стоимость порошковой покраски',
-    subtitle: 'Финальная цена зависит от типа металла, подготовки поверхности, сложности формы и объёма партии.'
+    title: 'Цены',
+    subtitle: 'Рассчитаем точную стоимость за 5 минут. Пришлите фото — подскажем цену и сроки'
   },
   plans: [
-    { planName: 'Стандартные изделия', price: 'от 480 ₽', period: '/м²' },
-    { planName: 'Сложная геометрия', price: 'от 820 ₽', period: '/м²' },
-    { planName: 'Крупные конструкции', price: 'от 1250 ₽', period: '/м²' }
+    { planName: 'Диски', price: '2000 ₽' },
+    { planName: 'Детали', price: '500 ₽' },
+    { planName: 'Конструкции', price: '700 ₽/м²' }
   ]
 } as const;
 

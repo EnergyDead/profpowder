@@ -1,22 +1,25 @@
 ---
 import Container from '@/components/ui/Container.astro';
-import SectionTitle from '@/components/ui/SectionTitle.astro';
 import PriceCard from '@/components/ui/PriceCard.astro';
 import { pricing } from '@/data/site';
 ---
 
-<section id="pricing" class="py-12 sm:py-16">
-  <Container class="space-y-8">
-    <SectionTitle
-      eyebrow={pricing.section.eyebrow}
-      title={pricing.section.title}
-      subtitle={pricing.section.subtitle}
-    />
+<section id="pricing" class="py-14 sm:py-16 lg:py-20">
+  <Container>
+    <div class="mx-auto flex w-full max-w-[1240px] flex-col items-center gap-5">
+      <h2 class="text-center text-3xl font-semibold tracking-tight text-[#e4e8ef] sm:text-[36px]">
+        {pricing.section.title}
+      </h2>
 
-    <div class="grid gap-4 lg:grid-cols-3">
-      {pricing.plans.map((plan) => (
-        <PriceCard planName={plan.planName} price={plan.price} period={plan.period} />
-      ))}
+      <p class="max-w-[760px] text-center text-base font-normal leading-relaxed text-[#b4bdcb]">
+        {pricing.section.subtitle}
+      </p>
+
+      <div class="mt-4 grid w-full gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {pricing.plans.map((plan) => (
+          <PriceCard planName={plan.planName} price={plan.price} />
+        ))}
+      </div>
     </div>
   </Container>
 </section>
