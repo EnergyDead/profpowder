@@ -70,12 +70,12 @@ function App() {
           </header>
 
           <div className="mt-16 max-w-4xl lg:mt-24">
-            <h1 className="text-5xl font-semibold leading-[1.05] md:text-7xl md:leading-[1.03]">
+            <h1 className="text-4xl font-semibold leading-[1.08] md:text-6xl md:leading-[1.05]">
               Порошковая покраска
               <br />в Йошкар-Оле
             </h1>
 
-            <p className="mt-6 text-3xl leading-10 text-gray-300 md:text-[42px] md:leading-[1.18]">
+            <p className="mt-6 text-2xl leading-9 text-gray-300 md:text-[36px] md:leading-[1.2]">
               Это <span className="font-semibold">современный метод</span> нанесения полимерного
               покрытия на металлические изделия
             </p>
@@ -107,8 +107,18 @@ function App() {
                   className="rounded border border-black/70 bg-black/20 px-4 pb-6 pt-5 text-center"
                 >
                   <p className="text-7xl font-light leading-4 text-gray-200">{item.number}</p>
-                  <div className="mx-auto mt-6 w-[calc(100%+2rem)] -translate-x-4 bg-[radial-gradient(ellipse_70.36%_68.52%_at_36.11%_34.00%,_#F2861F_0%,_#EB8121_19%,_#E57C22_39%,_#893F16_100%)] py-3">
-                    <h3 className="whitespace-pre-line text-sm font-semibold leading-4 text-white">
+                  <div
+                    className={`mx-auto mt-6 w-[calc(100%+2rem)] -translate-x-4 py-3 ${
+                      item.number === '1'
+                        ? ''
+                        : 'bg-[radial-gradient(ellipse_70.36%_68.52%_at_36.11%_34.00%,_#F2861F_0%,_#EB8121_19%,_#E57C22_39%,_#893F16_100%)]'
+                    }`}
+                  >
+                    <h3
+                      className={`whitespace-pre-line text-sm font-semibold leading-4 ${
+                        item.number === '1' ? 'text-[#EB8121]' : 'text-white'
+                      }`}
+                    >
                       {item.title}
                     </h3>
                   </div>
