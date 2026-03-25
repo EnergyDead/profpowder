@@ -1,0 +1,15 @@
+---
+import Container from '@/components/ui/Container.astro';
+import { site } from '@/data/site';
+---
+
+<section id="contacts" class="py-12 md:py-16">
+  <Container>
+    <h2 class="text-2xl font-semibold md:text-3xl">Contacts</h2>
+    <div class="section-shell mt-6 p-6">
+      <p class="text-sm text-[var(--color-muted)]">{site.phone}</p>
+      <p class="text-sm text-[var(--color-muted)]">{site.email}</p>
+      <p class="text-sm text-[var(--color-muted)]">{site.address}</p>
+    </div>
+  </Container>
+</section>
