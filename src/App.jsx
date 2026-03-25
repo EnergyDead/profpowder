@@ -95,7 +95,7 @@ function App() {
             </button>
           </div>
 
-          <div id="advantages" className="mt-24 lg:mt-32">
+          <div id="advantages" className="mt-48 lg:mt-56">
             <h2 className="text-center text-4xl font-semibold leading-8 md:text-5xl">
               Преимущества порошковой покраски:
             </h2>
@@ -104,25 +104,15 @@ function App() {
               {benefits.map((item) => (
                 <article
                   key={item.number}
-                  className="rounded border border-black/70 bg-black/20 px-4 pb-6 pt-5 text-center"
+                  className="rounded-[20px] border border-gray-300/60 bg-black/25 px-6 pb-9 pt-8 text-center"
                 >
-                  <p className="text-7xl font-light leading-4 text-gray-200">{item.number}</p>
-                  <div
-                    className={`mx-auto mt-6 w-[calc(100%+2rem)] -translate-x-4 py-3 ${
-                      item.number === '1'
-                        ? ''
-                        : 'bg-[radial-gradient(ellipse_70.36%_68.52%_at_36.11%_34.00%,_#F2861F_0%,_#EB8121_19%,_#E57C22_39%,_#893F16_100%)]'
-                    }`}
-                  >
-                    <h3
-                      className={`whitespace-pre-line text-sm font-semibold leading-4 ${
-                        item.number === '1' ? 'text-[#EB8121]' : 'text-white'
-                      }`}
-                    >
-                      {item.title}
-                    </h3>
-                  </div>
-                  <p className="mt-5 text-xs font-normal leading-3 text-gray-200">{item.description}</p>
+                  <p className="text-8xl font-light leading-none text-gray-100">{item.number}</p>
+                  <h3 className="mt-7 whitespace-pre-line text-4xl font-semibold leading-tight text-[#EB8121] md:text-5xl xl:text-[34px]">
+                    {item.title}
+                  </h3>
+                  <p className="mx-auto mt-7 max-w-[280px] text-xl font-normal leading-snug text-gray-100 md:text-2xl xl:text-[20px]">
+                    {item.description}
+                  </p>
                 </article>
               ))}
             </div>
