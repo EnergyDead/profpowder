@@ -1,11 +1,11 @@
 ---
 import Container from '@/components/ui/Container.astro';
-import { site } from '@/data/site';
+import { footer, site } from '@/data/site';
 ---
 
 <footer id="footer" class="border-t border-[var(--color-border)] py-8">
   <Container class="flex flex-col gap-2 text-sm text-[var(--color-muted)] sm:flex-row sm:items-center sm:justify-between">
     <p>© {new Date().getFullYear()} {site.name}</p>
-    <p>Все права защищены.</p>
+    <p>{footer.rights}</p>
   </Container>
 </footer>

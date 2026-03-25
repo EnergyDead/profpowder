@@ -2,19 +2,19 @@
 import Container from '@/components/ui/Container.astro';
 import SectionTitle from '@/components/ui/SectionTitle.astro';
 import CategoryCard from '@/components/ui/CategoryCard.astro';
-import { services } from '@/data/site';
+import { serviceCategories } from '@/data/site';
 ---
 
 <section id="services" class="py-12 sm:py-16">
   <Container class="space-y-8">
     <SectionTitle
-      eyebrow="Услуги"
-      title="Основные направления покраски"
-      subtitle="Берём как единичные изделия, так и серийные партии для регулярного производства."
+      eyebrow={serviceCategories.section.eyebrow}
+      title={serviceCategories.section.title}
+      subtitle={serviceCategories.section.subtitle}
     />
 
     <div class="grid gap-4 sm:grid-cols-2">
-      {services.map((service) => (
+      {serviceCategories.items.map((service) => (
         <CategoryCard title={service.title} countLabel={service.countLabel} image={service.image} />
       ))}
     </div>

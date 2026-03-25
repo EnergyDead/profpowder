@@ -2,25 +2,25 @@
 import Container from '@/components/ui/Container.astro';
 import SectionTitle from '@/components/ui/SectionTitle.astro';
 import TabButton from '@/components/ui/TabButton.astro';
-import { partnerCards, partnersTabs } from '@/data/site';
+import { partners } from '@/data/site';
 ---
 
 <section id="partners" class="py-12 sm:py-16">
   <Container class="space-y-8">
     <SectionTitle
-      eyebrow="Партнёры"
-      title="Поставщики и корпоративные клиенты"
-      subtitle="Сотрудничаем с брендами материалов, производствами и строительными компаниями."
+      eyebrow={partners.section.eyebrow}
+      title={partners.section.title}
+      subtitle={partners.section.subtitle}
     />
 
     <div class="flex flex-wrap gap-2">
-      {partnersTabs.map((tab, index) => (
+      {partners.tabs.map((tab, index) => (
         <TabButton label={tab} isActive={index === 0} />
       ))}
     </div>
 
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {partnerCards.map((partner) => (
+      {partners.cards.map((partner) => (
         <article class="ui-surface flex min-h-24 items-center justify-center p-6 text-sm uppercase tracking-[0.12em] text-[var(--color-muted)]">
           {partner}
         </article>
