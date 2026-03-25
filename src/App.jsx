@@ -48,6 +48,13 @@ const prices = [
 
 const categories = ['Все', 'Диски', 'Ограждения', 'Детали', 'Мебель'];
 
+const processSteps = [
+  'Бесплатно уточним\nстоимость',
+  'Работаем четко\nпо срокам',
+  'Оплата по факту\nготовности',
+  'Даем полную\nгарантию'
+];
+
 const workPairs = [
   {
     category: 'Диски',
@@ -320,6 +327,60 @@ function App() {
               </div>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section id="order" className="mx-auto max-w-[1240px] px-6 pb-24 lg:px-8">
+        <h3 className="text-center text-4xl font-semibold leading-8">Закажите порошковую покраску</h3>
+        <p className="mt-6 text-center text-base font-normal leading-3 text-gray-200">
+          Отправьте фото изделия - узнаете точную цену и сроки покраски
+        </p>
+
+        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {processSteps.map((step, index) => (
+            <article key={step} className="overflow-hidden rounded border border-black/80 bg-black/40">
+              <div className="flex h-20 items-center justify-center">
+                <p className="text-7xl font-light leading-4 text-gray-200">{index + 1}</p>
+              </div>
+              <div className="bg-[radial-gradient(ellipse_70.36%_68.52%_at_36.11%_34.00%,_#F2861F_0%,_#EB8121_19%,_#E57C22_39%,_#893F16_100%)] px-4 py-3">
+                <p className="whitespace-pre-line text-center text-sm font-semibold leading-4 text-white">
+                  {step}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="contacts" className="mx-auto max-w-[1240px] px-6 pb-24 lg:px-8">
+        <h3 className="text-center text-4xl font-semibold leading-8">Контакты</h3>
+
+        <div className="mt-8 grid gap-6 rounded border border-black p-5 lg:grid-cols-[350px_1fr]">
+          <div className="rounded bg-[#0b0f14] p-5">
+            <p className="text-center text-4xl font-semibold leading-9 text-gray-200">Профи Порошок</p>
+            <p className="mt-8 text-center text-2xl font-normal leading-4 text-gray-200">
+              г. Йошкар-Ола, ул. Кирова, 6
+            </p>
+            <div className="mt-8 space-y-6 text-2xl font-normal leading-4 text-gray-200">
+              <p className="text-center">+7 (902) 124-33-69</p>
+              <a className="block text-center underline hover:text-white" href="mailto:porochok12gmail.com">
+                porochok12gmail.com
+              </a>
+              <a className="block text-center hover:text-white" href="https://t.me/DLPowder" target="_blank" rel="noreferrer">
+                @DLPowder
+              </a>
+            </div>
+          </div>
+
+          <div className="h-80 overflow-hidden rounded border border-black">
+            <iframe
+              title="Карта 2ГИС — Профи Порошок"
+              src="https://widgets.2gis.com/widget?type=firmsonmap&opts=%7B%22city%22%3A%22yoshkarola%22%2C%22search%22%3A%22%D0%9A%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%2C%206%22%7D"
+              className="h-full w-full"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
         </div>
       </section>
     </div>
