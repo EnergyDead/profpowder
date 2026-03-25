@@ -1,21 +1,26 @@
 ---
 import Container from '@/components/ui/Container.astro';
-import SectionTitle from '@/components/ui/SectionTitle.astro';
-import FeatureCard from '@/components/ui/FeatureCard.astro';
 import { advantages } from '@/data/site';
 ---
 
-<section id="advantages" class="py-12 sm:py-16">
-  <Container class="space-y-8">
-    <SectionTitle
-      eyebrow={advantages.section.eyebrow}
-      title={advantages.section.title}
-      subtitle={advantages.section.subtitle}
-    />
+<section id="advantages" class="bg-[#060709] py-16 lg:py-20">
+  <Container class="max-w-[1238px] px-6">
+    <h2 class="text-center text-[36px] leading-8 font-semibold text-[#E7EBF3]">{advantages.section.title}</h2>
 
-    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      {advantages.cards.map((item) => (
-        <FeatureCard title={`${item.value} — ${item.title}`} description={item.description} />
+    <div class="mt-12 grid grid-cols-4 justify-items-center gap-6">
+      {advantages.cards.map((item, index) => (
+        <article class="flex h-[192px] w-[208px] flex-col items-center rounded-[14px] border border-white/15 bg-[rgba(14,16,20,0.62)] px-4 pt-6 pb-4 text-center">
+          <span class="text-[72px] leading-[16px] font-light text-[#E7EBF3]">{index + 1}</span>
+
+          <div
+            class="mt-6 flex h-12 w-[164px] items-center justify-center rounded-[10px] px-2 text-[14px] leading-4 font-semibold text-white whitespace-pre-line"
+            style="background:radial-gradient(129.81% 147.43% at 14.02% 12.5%,#F2861F 0%,#EB8121 36%,#E57C22 65%,#893F16 100%);"
+          >
+            {item.title}
+          </div>
+
+          <p class="mt-4 text-[12px] leading-3 font-normal text-[#E7EBF3] whitespace-pre-line">{item.description}</p>
+        </article>
       ))}
     </div>
   </Container>
