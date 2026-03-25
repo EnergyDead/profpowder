@@ -1,0 +1,27 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/sections/Hero.astro';
+import Advantages from '@/components/sections/Advantages.astro';
+import Services from '@/components/sections/Services.astro';
+import Pricing from '@/components/sections/Pricing.astro';
+import Portfolio from '@/components/sections/Portfolio.astro';
+import Partners from '@/components/sections/Partners.astro';
+import Contacts from '@/components/sections/Contacts.astro';
+import LeadForm from '@/components/sections/LeadForm.astro';
+import Footer from '@/components/sections/Footer.astro';
+import { site } from '@/data/site';
+---
+
+<BaseLayout title={site.title} description={site.description}>
+  <main>
+    <Hero />
+    <Advantages />
+    <Services />
+    <Pricing />
+    <Portfolio />
+    <Partners />
+    <Contacts />
+    <LeadForm />
+  </main>
+  <Footer />
+</BaseLayout>
