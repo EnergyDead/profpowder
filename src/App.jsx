@@ -383,6 +383,67 @@ function App() {
           </div>
         </div>
       </section>
+
+      <footer className="bg-[#070b10] px-6 pb-16 pt-4 lg:px-8">
+        <div className="mx-auto flex max-w-[1240px] flex-col items-center">
+          <div className="w-full max-w-[596px] rounded-[5px] border border-gray-400/60 bg-black/25 px-10 pb-14 pt-10 md:px-12">
+            <label className="block text-base font-medium leading-7 text-gray-200" htmlFor="order-name">
+              Ваше имя*
+            </label>
+            <input
+              id="order-name"
+              type="text"
+              className="mt-3 h-12 w-full rounded-[5px] border border-gray-400/70 bg-transparent px-4 text-base text-gray-100 outline-none placeholder:text-gray-400/80 focus:border-[#EB8121]"
+            />
+
+            <label className="mt-8 block text-base font-medium leading-7 text-gray-200" htmlFor="order-phone">
+              Телефон*
+            </label>
+            <input
+              id="order-phone"
+              type="tel"
+              className="mt-3 h-12 w-full rounded-[5px] border border-gray-400/70 bg-transparent px-4 text-base text-gray-100 outline-none placeholder:text-gray-400/80 focus:border-[#EB8121]"
+            />
+
+            <label className="mt-8 block text-base font-medium leading-7 text-gray-200" htmlFor="order-comment">
+              Комменатрии
+            </label>
+            <textarea
+              id="order-comment"
+              rows={4}
+              className="mt-3 w-full resize-none rounded-[5px] border border-gray-400/70 bg-transparent p-4 text-base text-gray-100 outline-none placeholder:text-gray-400/80 focus:border-[#EB8121]"
+            />
+
+            <label
+              htmlFor="order-photo"
+              className="mt-4 flex h-12 w-full max-w-[320px] cursor-pointer items-center rounded-[5px] border border-gray-400/70 bg-transparent px-5"
+            >
+              <span className="text-4xl font-medium leading-7 text-[#F2861F]">+</span>
+              <span className="ml-6 text-base font-medium leading-7 text-gray-200">Прикрепить фото</span>
+            </label>
+            <input id="order-photo" type="file" className="hidden" />
+
+            <button className="mt-[96px] inline-flex h-20 w-full items-center justify-center rounded-[5px] bg-[radial-gradient(ellipse_89.93%_82.48%_at_36.11%_34.00%,_#F2861F_0%,_#EB8121_19%,_#E57C22_39%,_#893F16_100%)] px-7 py-4 text-center text-4xl font-semibold leading-6 text-gray-200 shadow-[0_4px_4px_rgba(0,0,0,0.25)] transition hover:brightness-110">
+              Заказать расчет
+            </button>
+          </div>
+
+          <div className="mt-8 flex flex-col items-center">
+            <a href="#hero" className="flex items-center gap-3">
+              <span className="flex h-10 w-10 items-center justify-center rounded border-4 border-gray-300 text-3xl font-black leading-none text-gray-200">
+                П
+              </span>
+              <p className="text-xl font-bold leading-5 text-gray-200">ПРОФИ ПОРОШОК</p>
+            </a>
+
+            <p className="mt-8 text-center text-xl font-medium leading-6 text-gray-200">
+              © 2026 ПОРФИ ПОРШОК
+              <br />
+              Все права защищены
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
