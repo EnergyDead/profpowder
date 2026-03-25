@@ -1,11 +1,21 @@
 ---
 import Container from '@/components/ui/Container.astro';
-import { footer, site } from '@/data/site';
 ---
 
-<footer id="footer" class="border-t border-[var(--color-border)] py-8">
-  <Container class="flex flex-col gap-2 text-sm text-[var(--color-muted)] sm:flex-row sm:items-center sm:justify-between">
-    <p>© {new Date().getFullYear()} {site.name}</p>
-    <p>{footer.rights}</p>
+<footer id="footer" class="border-t border-white/10 bg-[#060709]/95 py-10">
+  <Container class="flex flex-col items-center justify-center">
+    <a href="#hero" class="inline-flex items-center gap-4 text-[#E7EBF3]" aria-label="ПРОФИ ПОРОШОК">
+      <span class="relative block h-[58px] w-[58px] rounded-[8px] border border-white/30 bg-[linear-gradient(155deg,#3c4149_0%,#191d23_100%)] shadow-[inset_0_1px_1px_rgba(255,255,255,0.25)]">
+        <span class="absolute left-[13px] top-[10px] h-[38px] w-[9px] rounded-[3px] bg-[linear-gradient(180deg,#d8dde6_0%,#808894_100%)]"></span>
+        <span class="absolute left-[13px] top-[10px] h-[9px] w-[32px] rounded-[3px] bg-[linear-gradient(180deg,#d8dde6_0%,#808894_100%)]"></span>
+        <span class="absolute left-[36px] top-[10px] h-[38px] w-[9px] rounded-[3px] bg-[linear-gradient(180deg,#d8dde6_0%,#808894_100%)]"></span>
+      </span>
+      <span class="text-[20px] leading-[20px] font-bold tracking-[0.01em]">ПРОФИ ПОРОШОК</span>
+    </a>
+
+    <p class="mt-6 text-center text-[20px] leading-6 font-medium text-gray-200">
+      <span class="block">© 2026 ПОРФИ ПОРШОК</span>
+      <span class="block">Все права защищены</span>
+    </p>
   </Container>
 </footer>
