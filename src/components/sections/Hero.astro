@@ -4,36 +4,50 @@ import PrimaryButton from '@/components/ui/PrimaryButton.astro';
 import { hero, menu, site } from '@/data/site';
 ---
 
-<section id="hero" class="relative overflow-hidden">
+<section id="hero" class="relative min-h-[92svh] overflow-hidden">
   <div class="absolute inset-0">
-    <img src={hero.image.src} alt={hero.image.alt} class="h-full w-full object-cover" />
-    <div class="absolute inset-0 bg-[#06080d]/80"></div>
-    <div class="absolute inset-0 bg-gradient-to-b from-[#0a0d14]/55 via-[#0a0d14]/75 to-[#090a0d]"></div>
+    <img src={hero.image.src} alt={hero.image.alt} class="h-full w-full object-cover object-center" />
+    <div class="absolute inset-0 bg-[#05070b]/84"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_15%_25%,rgba(240,138,36,0.14),transparent_40%),radial-gradient(circle_at_82%_18%,rgba(255,255,255,0.08),transparent_42%),linear-gradient(180deg,rgba(3,5,8,0.50)_0%,rgba(3,5,8,0.84)_52%,rgba(2,3,6,0.95)_100%)]"></div>
   </div>
 
-  <Container class="relative z-10 py-6 pb-16 sm:py-8 sm:pb-24">
-    <header class="flex flex-col gap-5 border-b border-white/10 pb-6 sm:flex-row sm:items-center sm:justify-between">
-      <a href="#hero" class="text-lg font-semibold tracking-[0.14em] text-white">{site.name}</a>
-      <nav aria-label={menu.ariaLabel} class="flex flex-wrap gap-2 sm:justify-end">
+  <Container class="relative z-10 flex min-h-[92svh] flex-col py-6 sm:py-8 lg:py-10">
+    <header class="flex items-center justify-between gap-5 border-b border-white/12 pb-5 sm:pb-6">
+      <a href="#hero" class="inline-flex items-center gap-2 text-white/95">
+        <span class="h-2.5 w-2.5 rounded-full bg-[var(--color-accent)] shadow-[0_0_0_5px_rgba(240,138,36,0.18)]"></span>
+        <span class="text-sm font-semibold tracking-[0.16em] sm:text-base">{site.name}</span>
+      </a>
+
+      <nav aria-label={menu.ariaLabel} class="hidden items-center gap-2 md:flex">
         {menu.items.map((item) => (
-          <a href={item.href} class="ui-button border border-white/15 bg-white/5 px-3 py-2 text-xs text-white/90 hover:border-white/30 hover:bg-white/10">
+          <a href={item.href} class="ui-button border border-white/15 bg-white/5 px-3 py-2 text-xs text-white/90 hover:border-white/35 hover:bg-white/10">
             {item.label}
           </a>
         ))}
       </nav>
     </header>
 
-    <div class="mt-10 max-w-3xl space-y-6 sm:mt-16">
-      <h1 class="text-3xl font-semibold leading-tight tracking-tight text-white sm:text-5xl">{hero.title}</h1>
-      <p class="text-base text-white/75 sm:text-lg">{hero.subtitle}</p>
+    <div class="my-auto max-w-4xl pt-14 sm:pt-20 lg:pt-24">
+      <h1 class="text-4xl font-semibold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">{hero.title}</h1>
+      <p class="mt-6 max-w-3xl text-base leading-relaxed text-white/80 sm:text-lg lg:text-xl">{hero.subtitle}</p>
 
-      <ul class="grid gap-2 text-sm text-white/90 sm:grid-cols-3 sm:gap-3">
+      <ul class="mt-8 flex flex-col gap-2 text-sm text-white/90 sm:mt-10 sm:flex-row sm:flex-wrap sm:gap-3 lg:flex-nowrap">
         {hero.benefits.map((item) => (
-          <li class="rounded-[var(--radius-ui)] border border-white/20 bg-white/5 px-4 py-3">{item}</li>
+          <li class="rounded-[var(--radius-ui)] border border-white/22 bg-white/6 px-4 py-3 backdrop-blur-[1px]">{item}</li>
         ))}
       </ul>
 
-      <PrimaryButton label={hero.ctaLabel} class="w-full sm:w-auto" />
+      <div class="mt-8 sm:mt-10">
+        <PrimaryButton label={hero.ctaLabel} class="w-full sm:w-auto sm:min-w-60" />
+      </div>
     </div>
+
+    <nav aria-label={`${menu.ariaLabel} мобильное`} class="mt-8 flex flex-col gap-2 pb-1 md:hidden">
+      {menu.items.map((item) => (
+        <a href={item.href} class="ui-button border border-white/15 bg-white/5 px-3 py-2 text-xs text-white/90 hover:border-white/35 hover:bg-white/10">
+          {item.label}
+        </a>
+      ))}
+    </nav>
   </Container>
 </section>
