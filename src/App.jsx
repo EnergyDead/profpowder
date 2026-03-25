@@ -27,6 +27,23 @@ const benefits = [
 
 const facts = ['От 1 дня', 'Гарантия качества', 'Работаем с любыми изделиями'];
 
+const paintedItems = [
+  { title: 'Металлопрокат', image: '/images/painted/metalloprokat.jpg' },
+  { title: 'Ограждения\nи ворота', image: '/images/painted/fence-gate.jpg' },
+  { title: 'Автомобильные диски\nи мото детали', image: '/images/painted/wheels-moto.jpg' },
+  { title: 'Мебель', image: '/images/painted/furniture.jpg' }
+];
+
+const prices = [
+  { title: 'Диски', priceFrom: '2000 ₽', background: '/images/prices/diski-bg.jpg' },
+  { title: 'Детали', priceFrom: '500 ₽', background: '/images/prices/details-bg.jpg' },
+  {
+    title: 'Конструкции',
+    priceFrom: '700 ₽/м²',
+    background: '/images/prices/constructions-bg.jpg'
+  }
+];
+
 function App() {
   return (
     <div className="bg-[#06090d] text-gray-200 font-['Montserrat']">
@@ -85,7 +102,7 @@ function App() {
                 <div key={fact} className="flex items-center gap-3">
                   <span className="h-2 w-2 rounded-full bg-[#d47626]" />
                   <span>{fact}</span>
-                  {index !== facts.length - 1 && <span className="hidden md:inline text-[#d47626]">•</span>}
+                  {index !== facts.length - 1 && <span className="hidden text-[#d47626] md:inline">•</span>}
                 </div>
               ))}
             </div>
@@ -121,11 +138,46 @@ function App() {
       </section>
 
       <section id="painted" className="mx-auto max-w-[1240px] px-6 py-24 lg:px-8">
-        <h3 className="text-center text-base font-semibold leading-6">Что красим</h3>
+        <h3 className="text-center text-4xl font-semibold leading-8">Что красим</h3>
+        <p className="mx-auto mt-7 max-w-[740px] text-center text-base font-normal leading-4 text-gray-200">
+          Красим любые металлические изделия — от автомобильных дисков до крупных конструкций
+        </p>
+
+        <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          {paintedItems.map((item) => (
+            <article key={item.title} className="overflow-hidden rounded border border-white/25 bg-black/40">
+              <div className="h-64 w-full bg-cover bg-center" style={{ backgroundImage: `url('${item.image}')` }} />
+              <div className="flex h-14 items-center justify-center border-t border-white/25 px-4">
+                <h4 className="whitespace-pre-line text-center text-lg font-semibold leading-4">{item.title}</h4>
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section id="prices" className="mx-auto max-w-[1240px] px-6 py-24 lg:px-8">
-        <h3 className="text-center text-base font-semibold leading-6">Цены</h3>
+        <h3 className="text-center text-4xl font-semibold leading-8">Цены</h3>
+        <p className="mx-auto mt-7 max-w-[740px] text-center text-base font-normal leading-4 text-gray-200">
+          Рассчитаем точную стоимость за 5 минут. Пришлите фото — подскажем цену и сроки
+        </p>
+
+        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {prices.map((item) => (
+            <article
+              key={item.title}
+              className="rounded border border-white/25 bg-black/50 bg-cover bg-center px-8 pb-10 pt-8"
+              style={{ backgroundImage: `url('${item.background}')` }}
+            >
+              <h4 className="text-center text-5xl font-semibold leading-8">{item.title}</h4>
+              <p className="mt-6 text-center text-5xl font-light leading-8">
+                от <span className="font-semibold text-6xl">{item.priceFrom}</span>
+              </p>
+              <button className="mx-auto mt-10 flex h-14 items-center justify-center rounded-[5px] bg-[radial-gradient(ellipse_89.93%_82.48%_at_36.11%_34.00%,_#F2861F_0%,_#EB8121_19%,_#E57C22_39%,_#893F16_100%)] px-7 py-4 text-lg font-semibold leading-6 text-gray-200 shadow-[0_4px_4px_rgba(0,0,0,0.25)] transition hover:brightness-110">
+                Оставить заявку
+              </button>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section id="works" className="mx-auto max-w-[1240px] px-6 pb-24 pt-24 lg:px-8">
