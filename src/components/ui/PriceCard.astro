@@ -1,0 +1,35 @@
+---
+import PrimaryButton from '@/components/ui/PrimaryButton.astro';
+
+interface Props {
+  planName?: string;
+  price?: string;
+  period?: string;
+  class?: string;
+}
+
+const {
+  planName = 'Plan',
+  price = '$0',
+  period = '/period',
+  class: className = ''
+} = Astro.props as Props;
+---
+
+<article class={`ui-surface space-y-5 p-5 ${className}`}>
+  <div class="space-y-2">
+    <p class="text-xs uppercase tracking-[0.2em] text-[var(--color-muted)]">{planName}</p>
+    <p class="text-3xl font-semibold text-[var(--color-text)]">
+      {price}
+      <span class="ml-1 text-sm font-normal text-[var(--color-muted)]">{period}</span>
+    </p>
+  </div>
+
+  <ul class="space-y-2 text-sm text-[var(--color-muted)]">
+    <li class="border-l border-[var(--color-border)] pl-3">Placeholder feature</li>
+    <li class="border-l border-[var(--color-border)] pl-3">Placeholder feature</li>
+    <li class="border-l border-[var(--color-border)] pl-3">Placeholder feature</li>
+  </ul>
+
+  <PrimaryButton label="Select" class="w-full" />
+</article>

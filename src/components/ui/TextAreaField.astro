@@ -1,0 +1,22 @@
+---
+interface Props {
+  label?: string;
+  placeholder?: string;
+  id?: string;
+  rows?: number;
+  class?: string;
+}
+
+const {
+  label = 'Textarea label',
+  placeholder = 'Placeholder',
+  id = 'textarea-field',
+  rows = 4,
+  class: className = ''
+} = Astro.props as Props;
+---
+
+<label class={`block space-y-2 ${className}`} for={id}>
+  <span class="text-xs uppercase tracking-[0.12em] text-[var(--color-muted)]">{label}</span>
+  <textarea id={id} rows={rows} placeholder={placeholder} class="ui-control ui-focus resize-y"></textarea>
+</label>

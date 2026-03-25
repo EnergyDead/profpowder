@@ -1,0 +1,22 @@
+---
+interface Props {
+  label?: string;
+  placeholder?: string;
+  type?: 'text' | 'email' | 'tel' | 'password';
+  id?: string;
+  class?: string;
+}
+
+const {
+  label = 'Input label',
+  placeholder = 'Placeholder',
+  type = 'text',
+  id = 'input-field',
+  class: className = ''
+} = Astro.props as Props;
+---
+
+<label class={`block space-y-2 ${className}`} for={id}>
+  <span class="text-xs uppercase tracking-[0.12em] text-[var(--color-muted)]">{label}</span>
+  <input id={id} type={type} placeholder={placeholder} class="ui-control ui-focus" />
+</label>

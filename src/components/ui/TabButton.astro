@@ -1,0 +1,23 @@
+---
+interface Props {
+  label?: string;
+  isActive?: boolean;
+  class?: string;
+}
+
+const {
+  label = 'Tab',
+  isActive = false,
+  class: className = ''
+} = Astro.props as Props;
+---
+
+<button
+  type="button"
+  aria-pressed={isActive}
+  class={`ui-button ui-focus text-sm ${isActive
+    ? 'border-[var(--color-accent)] bg-[var(--color-accent)]/12 text-[var(--color-accent-strong)] shadow-[var(--shadow-glow)]'
+    : 'border-[var(--color-border)] bg-transparent text-[var(--color-muted)] hover:border-[var(--color-border-strong)] hover:text-[var(--color-text)]'} ${className}`}
+>
+  {label}
+</button>
