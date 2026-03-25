@@ -1,10 +1,26 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import DesignSystem from '@/components/sections/DesignSystem.astro';
+import Hero from '@/components/sections/Hero.astro';
+import Advantages from '@/components/sections/Advantages.astro';
+import Services from '@/components/sections/Services.astro';
+import Pricing from '@/components/sections/Pricing.astro';
+import Portfolio from '@/components/sections/Portfolio.astro';
+import Partners from '@/components/sections/Partners.astro';
+import Contacts from '@/components/sections/Contacts.astro';
+import LeadForm from '@/components/sections/LeadForm.astro';
+import Footer from '@/components/sections/Footer.astro';
 ---
 
-<BaseLayout title="UI Design System" description="Dark premium UI component system">
+<BaseLayout>
   <main>
-    <DesignSystem />
+    <Hero />
+    <Advantages />
+    <Services />
+    <Pricing />
+    <Portfolio />
+    <Partners />
+    <Contacts />
+    <LeadForm />
   </main>
+  <Footer />
 </BaseLayout>
