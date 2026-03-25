@@ -1,10 +1,33 @@
 ---
 import Container from '@/components/ui/Container.astro';
+import SectionTitle from '@/components/ui/SectionTitle.astro';
+import TabButton from '@/components/ui/TabButton.astro';
+import { portfolioTabs } from '@/data/site';
 ---
 
-<section id="portfolio" class="py-12 md:py-16">
-  <Container>
-    <h2 class="text-2xl font-semibold md:text-3xl">Portfolio</h2>
-    <div class="section-shell mt-6" />
+<section id="portfolio" class="py-12 sm:py-16">
+  <Container class="space-y-8">
+    <SectionTitle
+      eyebrow="Портфолио"
+      title="Примеры работ до и после"
+      subtitle="Смотрите реальные кейсы: от восстановления дисков до окраски промышленных конструкций."
+    />
+
+    <div class="flex flex-wrap gap-2">
+      {portfolioTabs.map((tab, index) => (
+        <TabButton label={tab} isActive={index === 0} />
+      ))}
+    </div>
+
+    <div class="ui-surface grid gap-4 p-4 sm:grid-cols-2 sm:p-6">
+      <div class="overflow-hidden rounded-[var(--radius-ui)] border border-[var(--color-border)]">
+        <div class="bg-[var(--color-surface-alt)] px-3 py-2 text-xs uppercase tracking-[0.14em] text-[var(--color-muted)]">До</div>
+        <div class="flex h-56 items-center justify-center bg-[var(--color-surface)] text-sm text-[var(--color-muted)] sm:h-72">Старая поверхность / фото-заглушка</div>
+      </div>
+      <div class="overflow-hidden rounded-[var(--radius-ui)] border border-[var(--color-border)]">
+        <div class="bg-[var(--color-surface-alt)] px-3 py-2 text-xs uppercase tracking-[0.14em] text-[var(--color-muted)]">После</div>
+        <div class="flex h-56 items-center justify-center bg-[var(--color-surface)] text-sm text-[var(--color-muted)] sm:h-72">Обновлённое покрытие / фото-заглушка</div>
+      </div>
+    </div>
   </Container>
 </section>

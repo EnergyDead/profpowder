@@ -1,10 +1,43 @@
 ---
 import Container from '@/components/ui/Container.astro';
+import SectionTitle from '@/components/ui/SectionTitle.astro';
+import InputField from '@/components/ui/InputField.astro';
+import TextAreaField from '@/components/ui/TextAreaField.astro';
+import PrimaryButton from '@/components/ui/PrimaryButton.astro';
+import { leadBenefits } from '@/data/site';
 ---
 
-<section id="lead-form" class="py-12 md:py-16">
-  <Container>
-    <h2 class="text-2xl font-semibold md:text-3xl">LeadForm</h2>
-    <div class="section-shell mt-6" />
+<section id="lead-form" class="py-12 sm:py-16">
+  <Container class="space-y-8">
+    <SectionTitle
+      eyebrow="Заявка"
+      title="Отправьте запрос на расчёт"
+      subtitle="Заполните форму — менеджер свяжется с вами, уточнит детали и стоимость работ."
+    />
+
+    <ul class="grid gap-3 text-sm text-[var(--color-text)] sm:grid-cols-2 lg:grid-cols-4">
+      {leadBenefits.map((benefit) => (
+        <li class="ui-surface p-4">{benefit}</li>
+      ))}
+    </ul>
+
+    <form class="ui-surface grid gap-4 p-5 sm:p-6 md:grid-cols-2" action="#" method="post">
+      <InputField id="lead-name" label="Имя" placeholder="Как к вам обращаться" />
+      <InputField id="lead-phone" label="Телефон" placeholder="+7 (___) ___-__-__" type="tel" />
+      <TextAreaField id="lead-comment" label="Комментарий" placeholder="Опишите задачу, размеры и желаемый цвет" class="md:col-span-2" />
+
+      <label for="lead-file" class="block space-y-2 md:col-span-2">
+        <span class="text-xs uppercase tracking-[0.12em] text-[var(--color-muted)]">Файл / чертёж</span>
+        <input
+          id="lead-file"
+          type="file"
+          class="ui-control ui-focus file:mr-3 file:rounded-md file:border-0 file:bg-[var(--color-accent)] file:px-3 file:py-2 file:text-sm file:font-medium file:text-[#17120c]"
+        />
+      </label>
+
+      <div class="md:col-span-2">
+        <PrimaryButton label="Отправить заявку" type="submit" class="w-full sm:w-auto" />
+      </div>
+    </form>
   </Container>
 </section>

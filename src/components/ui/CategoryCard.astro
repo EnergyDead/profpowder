@@ -2,17 +2,27 @@
 interface Props {
   title?: string;
   countLabel?: string;
+  image?: string;
   class?: string;
 }
 
 const {
   title = 'Category',
   countLabel = '00 items',
+  image,
   class: className = ''
 } = Astro.props as Props;
 ---
 
-<article class={`ui-surface flex items-center justify-between gap-4 p-4 transition duration-200 hover:border-[var(--color-border-strong)] hover:bg-white/[0.03] ${className}`}>
-  <h3 class="text-sm font-medium uppercase tracking-[0.08em] text-[var(--color-text)]">{title}</h3>
-  <span class="rounded-full border border-[var(--color-border)] px-2.5 py-1 text-xs text-[var(--color-muted)]">{countLabel}</span>
+<article class={`ui-surface overflow-hidden transition duration-200 hover:border-[var(--color-border-strong)] hover:bg-white/[0.03] ${className}`}>
+  {image && (
+    <div class="relative h-36 w-full overflow-hidden sm:h-40">
+      <img src={image} alt={title} loading="lazy" class="h-full w-full object-cover opacity-85" />
+      <div class="absolute inset-0 bg-gradient-to-t from-[#0b0e14] via-transparent to-transparent"></div>
+    </div>
+  )}
+  <div class="flex items-center justify-between gap-4 p-4">
+    <h3 class="text-sm font-medium uppercase tracking-[0.08em] text-[var(--color-text)]">{title}</h3>
+    <span class="rounded-full border border-[var(--color-border)] px-2.5 py-1 text-xs text-[var(--color-muted)]">{countLabel}</span>
+  </div>
 </article>
