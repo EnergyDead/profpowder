@@ -174,6 +174,11 @@ function App() {
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-4 text-sm leading-6 text-gray-300 md:gap-6">
+              <img
+                src="/images/painted/Group44.png"
+                alt="Иконка срока выполнения"
+                className="h-6 w-6 object-contain"
+              />
               {facts.map((fact, index) => (
                 <div key={fact} className="flex items-center gap-3">
                   <span>{fact}</span>
