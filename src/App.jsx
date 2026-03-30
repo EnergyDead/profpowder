@@ -30,10 +30,10 @@ const benefits = [
 const facts = ['От 1 дня', 'Гарантия качества', 'Работаем с любыми изделиями'];
 
 const paintedItems = [
-  { title: 'Металлопрокат', image: '/images/painted/metalloprokat.jpg' },
-  { title: 'Ограждения\nи ворота', image: '/images/painted/fence-gate.jpg' },
-  { title: 'Автомобильные диски\nи мото детали', image: '/images/painted/wheels-moto.jpg' },
-  { title: 'Мебель', image: '/images/painted/furniture.jpg' }
+  { title: 'Металлопрокат', image: '/images/painted/metalloprokat.png' },
+  { title: 'Ограждения\nи ворота', image: '/images/painted/fence-gate.png' },
+  { title: 'Автомобильные диски\nи мото детали', image: '/images/painted/wheels-moto.png' },
+  { title: 'Мебель', image: '/images/painted/furniture.png' }
 ];
 
 const prices = [
@@ -183,7 +183,7 @@ function App() {
                 <div key={fact} className="flex items-center gap-3">
                   <span>{fact}</span>
                   {index !== facts.length - 1 && (
-                    <span className="hidden text-[#d47626] md:inline">•</span>
+                    <span className="hidden md:inline w-2 h-2 rounded-full bg-[#d47626]"></span>
                   )}
                 </div>
               ))}
@@ -394,7 +394,7 @@ function App() {
         className="bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage:
-            "linear-gradient(180deg, rgba(3,6,10,0.88) 0%, rgba(3,6,10,0.92) 100%), url('/backgrounds/bg-5.png')"
+            "linear-gradient(180deg, rgba(3, 6, 10, 0.11) 0%, rgba(3,6,10,0.92) 100%), url('/backgrounds/bg-5.png')"
         }}
       >
         <div className="mx-auto flex max-w-[1240px] flex-col items-center px-6 pb-14 pt-8 lg:px-8">
