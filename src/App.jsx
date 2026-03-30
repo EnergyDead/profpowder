@@ -128,7 +128,7 @@ function App() {
         className="min-h-screen bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage:
-            "linear-gradient(180deg, rgba(3,6,10,0.75) 0%, rgba(3,6,10,0.9) 70%, #03060a 100%), url('/backgrounds/bg-1.png')"
+            "url('/backgrounds/bg-1.png')"
         }}
       >
         <div className="mx-auto flex min-h-screen max-w-[1240px] flex-col px-6 pb-20 pt-8 lg:px-8">
@@ -176,9 +176,10 @@ function App() {
             <div className="mt-10 flex flex-wrap items-center gap-4 text-sm leading-6 text-gray-300 md:gap-6">
               {facts.map((fact, index) => (
                 <div key={fact} className="flex items-center gap-3">
-                  <span className="h-2 w-2 rounded-full bg-[#d47626]" />
                   <span>{fact}</span>
-                  {index !== facts.length - 1 && <span className="hidden text-[#d47626] md:inline">•</span>}
+                  {index !== facts.length - 1 && (
+                    <span className="hidden text-[#d47626] md:inline">•</span>
+                  )}
                 </div>
               ))}
             </div>
