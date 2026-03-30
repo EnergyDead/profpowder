@@ -344,15 +344,14 @@ function App() {
 
         <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {processSteps.map((step, index) => (
-            <article key={step} className="overflow-hidden rounded border border-black/80 bg-black/40">
-              <div className="flex h-20 items-center justify-center">
-                <p className="text-7xl font-light leading-4 text-gray-200">{index + 1}</p>
-              </div>
-              <div className="bg-[radial-gradient(ellipse_70.36%_68.52%_at_36.11%_34.00%,_#F2861F_0%,_#EB8121_19%,_#E57C22_39%,_#893F16_100%)] px-4 py-3">
-                <p className="whitespace-pre-line text-center text-sm font-semibold leading-4 text-white">
-                  {step}
-                </p>
-              </div>
+            <article
+              key={step}
+              className="rounded-[20px] border border-gray-300/60 bg-black/25 px-6 pb-9 pt-8 text-center"
+            >
+              <p className="text-8xl font-light leading-none text-gray-100">{index + 1}</p>
+              <p className="mt-7 whitespace-pre-line text-[34px] font-semibold leading-tight text-[#EB8121] md:text-[38px] xl:text-[30px]">
+                {step}
+              </p>
             </article>
           ))}
         </div>
