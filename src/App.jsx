@@ -200,10 +200,10 @@ function App() {
                   className="rounded-[20px] border border-gray-300/60 bg-black/25 px-6 pb-9 pt-8 text-center"
                 >
                   <p className="text-8xl font-light leading-none text-gray-100">{item.number}</p>
-                  <h3 className="mt-7 whitespace-pre-line text-4xl font-semibold leading-tight text-[#EB8121] md:text-5xl xl:text-[34px]">
+                  <h3 className="mt-7 whitespace-pre-line text-[32px] font-semibold leading-tight text-[#EB8121] md:text-[42px] xl:text-[30px]">
                     {item.title}
                   </h3>
-                  <p className="mx-auto mt-7 max-w-[280px] text-xl font-normal leading-snug text-gray-100 md:text-2xl xl:text-[20px]">
+                  <p className="mx-auto mt-7 max-w-[280px] text-lg font-normal leading-snug text-gray-100 md:text-[21px] xl:text-[18px]">
                     {item.description}
                   </p>
                 </article>
