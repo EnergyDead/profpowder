@@ -86,7 +86,7 @@ const paintedItemDetails = {
       {
         title: 'Автомобильные диски',
         color: 'Порошковая покраска',
-        image: '/images/painted/m-3.png'
+        image: '/images/painted/wheels-moto.png'
       }
     ]
   },
@@ -245,7 +245,7 @@ function App() {
       payload.append('_captcha', 'false');
       payload.append('_honey', '');
 
-      const response = await fetch('https://formsubmit.co/ajax/rusvas012@gmail.com', {
+      const response = await fetch('https://formsubmit.co/ajax/porochok12@gmail.com', {
         method: 'POST',
         body: payload,
         headers: {
@@ -294,7 +294,7 @@ function App() {
         payload.append('attachment', photoFile);
       }
 
-      const response = await fetch('https://formsubmit.co/ajax/rusvas012@gmail.com', {
+      const response = await fetch('https://formsubmit.co/ajax/porochok12@gmail.com', {
         method: 'POST',
         body: payload,
         headers: {
