@@ -68,6 +68,28 @@ const processSteps = [
 ];
 
 const paintedItemDetails = {
+  'Ограждения\nи ворота': {
+    subtitle: 'Покраска ограждений и ворот',
+    priceFrom: 'от 1200 ₽',
+    gallery: [
+      {
+        title: 'Ограждения и ворота',
+        color: 'Порошковая покраска',
+        image: '/images/painted/o-1.png'
+      }
+    ]
+  },
+  'Автомобильные диски\nи мото детали': {
+    subtitle: 'Покраска дисков и мото деталей',
+    priceFrom: 'от 1500 ₽',
+    gallery: [
+      {
+        title: 'Автомобильные диски',
+        color: 'Порошковая покраска',
+        image: '/images/painted/m-3.png'
+      }
+    ]
+  },
   Металлопрокат: {
     subtitle: 'Покраска металлоизделий',
     priceFrom: 'от 600 ₽',
@@ -342,9 +364,14 @@ function App() {
                 ))}
               </div>
 
-              <div className="mt-10 grid gap-5 md:grid-cols-3">
+              <div
+                className={`mt-10 grid gap-5 ${gallery?.length === 1 ? 'justify-items-center md:grid-cols-1' : 'md:grid-cols-3'}`}
+              >
                 {gallery?.map((card) => (
-                  <article key={`${card.title}-${card.color}`} className="overflow-hidden rounded border border-white/35 bg-black/60">
+                  <article
+                    key={`${card.title}-${card.color}`}
+                    className={`overflow-hidden rounded border border-white/35 bg-black/60 ${gallery?.length === 1 ? 'w-full max-w-[360px]' : ''}`}
+                  >
                     <img src={card.image} alt={card.title} className="h-[250px] w-full object-cover" />
                     <div className="border-t border-white/25 bg-black/70 px-4 py-3 text-center">
                       <h2 className="text-4xl font-semibold leading-[1.05]">{card.title}</h2>
@@ -355,7 +382,9 @@ function App() {
               </div>
             </div>
           ) : gallery ? (
-            <div className="mx-auto mt-10 grid max-w-[980px] gap-5 md:grid-cols-3">
+            <div
+              className={`mx-auto mt-10 grid gap-5 ${gallery.length === 1 ? 'max-w-[360px] md:grid-cols-1' : 'max-w-[980px] md:grid-cols-3'}`}
+            >
               {gallery.map((card) => (
                 <article key={card.title} className="overflow-hidden rounded border border-white/35 bg-black/60">
                   <img src={card.image} alt={card.title} className="h-[250px] w-full object-cover" />
