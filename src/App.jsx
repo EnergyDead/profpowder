@@ -420,7 +420,17 @@ function App() {
   }
 
   return (
-    <div className="bg-[#06090d] text-gray-200 font-['Montserrat']">
+    <div
+      className="text-gray-200 font-['Montserrat']"
+      style={{
+        backgroundColor: '#06090d',
+        backgroundImage:
+          "linear-gradient(180deg, rgba(6, 9, 13, 0.88) 0%, rgba(6, 9, 13, 0.82) 45%, rgba(6, 9, 13, 0.9) 100%), url('/backgrounds/bg-1.png'), url('/backgrounds/bg-5.png')",
+        backgroundPosition: 'center top, center top, center bottom',
+        backgroundRepeat: 'no-repeat, repeat-y, repeat-y',
+        backgroundSize: '100% 100%, cover, cover'
+      }}
+    >
       <section
         id="hero"
         className="min-h-screen bg-cover bg-center bg-no-repeat"
@@ -694,13 +704,7 @@ function App() {
         </div>
       </section>
 
-      <footer
-        className="bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage:
-            "linear-gradient(180deg, rgba(3, 6, 10, 0.11) 0%, rgba(3,6,10,0.92) 100%), url('/backgrounds/bg-5.png')"
-        }}
-      >
+      <footer className="bg-[linear-gradient(180deg,rgba(3,6,10,0.11)_0%,rgba(3,6,10,0.92)_100%)]">
         <div className="mx-auto flex max-w-[1240px] flex-col items-center px-6 pb-14 pt-8 lg:px-8">
           <form
             ref={orderFormRef}
