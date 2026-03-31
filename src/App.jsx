@@ -68,6 +68,63 @@ const processSteps = [
 ];
 
 const paintedItemDetails = {
+  Металлопрокат: {
+    subtitle: 'Покраска металлоизделий',
+    priceFrom: 'от 600 ₽',
+    categories: [
+      [
+        'Алюминий',
+        'Ёмкости и банки\nиз нержавейки',
+        'Заборы и ограждения',
+        'Лестничные ограждения',
+        'Металлические двери'
+      ],
+      [
+        'Металлоконструкции\nдля мебельного оборудования',
+        'Настилы, навесы и козырьки',
+        'Нержавеющая сталь',
+        'Профнастил',
+        'Рекламные уличные\nметаллоконструкции'
+      ],
+      [
+        'Строительные\nметаллоконструкции',
+        'Трубы и трубопроводные\nсистемы',
+        'Фурнитура, крепеж,\nметизы'
+      ]
+    ],
+    gallery: [
+      {
+        title: 'Кронштейны кондиционера',
+        color: 'Ral 9003 шагр, Ral 1015 шагр,\nRal 8017 шагр',
+        image: '/images/painted/fence-gate.png'
+      },
+      {
+        title: 'Металлокассеты',
+        color: 'Ral 5012 гл.мат',
+        image: '/images/painted/metalloprokat.png'
+      },
+      {
+        title: 'Металлокассеты',
+        color: 'Ral 6018 гл.мат',
+        image: '/images/painted/wheels-moto.png'
+      },
+      {
+        title: 'Решетки кондиционера',
+        color: 'Ral 9003 гл.мат',
+        image: '/images/painted/furniture.png'
+      },
+      {
+        title: 'Перилла',
+        color: 'Ral 7024 шарень',
+        image: '/images/painted/metalloprokat.png'
+      },
+      {
+        title: 'Монокосоур',
+        color: 'Ral 1015 муар',
+        image: '/images/painted/fence-gate.png'
+      }
+    ]
+  },
   Мебель: {
     subtitle: 'Покраска металлоизделий',
     priceFrom: 'от 500 ₽',
@@ -97,6 +154,7 @@ function App() {
   const itemSubtitle = selectedDetails?.subtitle || selectedPaintedItem?.subtitle;
   const itemPriceFrom = selectedDetails?.priceFrom || selectedPaintedItem?.priceFrom;
   const gallery = selectedDetails?.gallery;
+  const categories = selectedDetails?.categories;
 
   if (selectedPaintedItem) {
     return (
@@ -117,7 +175,36 @@ function App() {
           </h1>
           <p className="mt-3 text-center text-base text-gray-300">{itemSubtitle}</p>
 
-          {gallery ? (
+          {categories ? (
+            <div className="mx-auto mt-8 max-w-[1150px]">
+              <div className="grid gap-10 md:grid-cols-3">
+                {categories.map((column) => (
+                  <div key={column[0]} className="space-y-3 text-left">
+                    {column.map((line, index) => (
+                      <p
+                        key={line}
+                        className={`whitespace-pre-line text-xl leading-tight ${index % 2 === 0 ? 'font-semibold text-[#EB8121]' : 'text-gray-100'}`}
+                      >
+                        {line}
+                      </p>
+                    ))}
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-10 grid gap-5 md:grid-cols-3">
+                {gallery?.map((card) => (
+                  <article key={`${card.title}-${card.color}`} className="overflow-hidden rounded border border-white/35 bg-black/60">
+                    <img src={card.image} alt={card.title} className="h-[250px] w-full object-cover" />
+                    <div className="border-t border-white/25 bg-black/70 px-4 py-3 text-center">
+                      <h2 className="text-4xl font-semibold leading-[1.05]">{card.title}</h2>
+                      <p className="whitespace-pre-line text-4xl font-semibold leading-[1.05]">{card.color}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          ) : gallery ? (
             <div className="mx-auto mt-10 grid max-w-[980px] gap-5 md:grid-cols-3">
               {gallery.map((card) => (
                 <article key={card.title} className="overflow-hidden rounded border border-white/35 bg-black/60">
