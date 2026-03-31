@@ -372,6 +372,25 @@ function App() {
         </div>
       </section>
 
+      <section
+        id="oven-size"
+        className="mx-auto max-w-[1240px] px-6 pb-24 lg:px-8"
+      >
+        <div className="overflow-hidden rounded border border-white/20 bg-black/30">
+          <div
+            className="min-h-[280px] bg-cover bg-center bg-no-repeat px-6 py-10 md:min-h-[360px] md:px-10"
+            style={{ backgroundImage: "url('/images/prices/container.png')" }}
+          >
+            <h3 className="text-center text-4xl font-semibold leading-tight md:text-5xl">
+              Габариты печи
+            </h3>
+            <p className="mt-4 text-center text-base text-gray-300 md:text-lg">
+              Позволяет производить порошковую окраску габаритных металлоизделий
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section id="contacts" className="mx-auto max-w-[1240px] px-6 pb-24 lg:px-8">
         <h3 className="text-center text-4xl font-semibold leading-8">Контакты</h3>
 
