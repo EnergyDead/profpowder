@@ -149,7 +149,12 @@ const paintedItemDetails = {
 };
 
 function App() {
+  const companyPhone = '+7 (902) 124-33-69';
   const [selectedPaintedItem, setSelectedPaintedItem] = useState(null);
+  const [isCallPopupOpen, setIsCallPopupOpen] = useState(false);
+  const [callbackData, setCallbackData] = useState({ name: '', phone: '' });
+  const [callbackStatus, setCallbackStatus] = useState({ type: '', message: '' });
+  const [isCallbackSubmitting, setIsCallbackSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -171,6 +176,75 @@ function App() {
   const handleFieldChange = (event) => {
     const { name, value } = event.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleCallbackFieldChange = (event) => {
+    const { name, value } = event.target;
+    setCallbackData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const closeCallPopup = () => {
+    setIsCallPopupOpen(false);
+    setCallbackStatus({ type: '', message: '' });
+  };
+
+  const handleOpenCallPopup = () => {
+    setCallbackStatus({ type: '', message: '' });
+    setIsCallPopupOpen(true);
+  };
+
+  const handleBackdropClick = (event) => {
+    if (event.target === event.currentTarget) {
+      closeCallPopup();
+    }
+  };
+
+  const handleCopyPhone = async () => {
+    try {
+      await navigator.clipboard.writeText(companyPhone);
+      setCallbackStatus({ type: 'success', message: 'Номер скопирован в буфер обмена.' });
+    } catch (error) {
+      setCallbackStatus({ type: 'error', message: 'Не удалось скопировать номер. Скопируйте вручную.' });
+    }
+  };
+
+  const handleCallbackSubmit = async (event) => {
+    event.preventDefault();
+    setCallbackStatus({ type: '', message: '' });
+    setIsCallbackSubmitting(true);
+
+    try {
+      const payload = new FormData();
+      payload.append('name', callbackData.name);
+      payload.append('phone', callbackData.phone);
+      payload.append('comment', 'Запрос обратного звонка');
+      payload.append('_subject', 'Запрос обратного звонка с сайта Профи Порошок');
+      payload.append('_template', 'table');
+      payload.append('_captcha', 'false');
+      payload.append('_honey', '');
+
+      const response = await fetch('https://formsubmit.co/ajax/rusvas012@gmail.com', {
+        method: 'POST',
+        body: payload,
+        headers: {
+          Accept: 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error('Не удалось отправить форму обратного звонка.');
+      }
+
+      setCallbackData({ name: '', phone: '' });
+      closeCallPopup();
+    } catch (error) {
+      setCallbackStatus({
+        type: 'error',
+        message: 'Не удалось отправить заявку. Попробуйте еще раз.'
+      });
+    } finally {
+      setIsCallbackSubmitting(false);
+    }
   };
 
   const handleFileChange = (event) => {
@@ -346,7 +420,7 @@ function App() {
                 Что красим
               </a>
               <button
-                onClick={scrollToOrderForm}
+                onClick={handleOpenCallPopup}
                 className="rounded border border-white/35 px-6 py-3 text-sm font-semibold leading-4 transition hover:border-white/60 hover:bg-white/5"
               >
                 Заказать звонок
@@ -413,6 +487,83 @@ function App() {
           </div>
         </div>
       </section>
+
+      {isCallPopupOpen ? (
+        <div
+          className="fixed inset-0 z-50 flex items-start justify-center bg-black/70 px-4 py-12 md:items-center"
+          onClick={handleBackdropClick}
+        >
+          <div className="w-full max-w-[520px] rounded-xl border border-white/25 bg-[#0d1218] p-6 shadow-[0_16px_40px_rgba(0,0,0,0.45)]">
+            <div className="flex items-start justify-between gap-4">
+              <h3 className="text-2xl font-semibold leading-tight text-gray-100">Заказать звонок</h3>
+              <button
+                type="button"
+                onClick={closeCallPopup}
+                className="text-2xl leading-none text-gray-300 transition hover:text-white"
+                aria-label="Закрыть окно"
+              >
+                ×
+              </button>
+            </div>
+
+            <p className="mt-4 text-sm text-gray-300">Нажмите на номер, чтобы скопировать его.</p>
+
+            <div className="mt-4 grid gap-3 sm:grid-cols-[1fr_auto]">
+              <button
+                type="button"
+                onClick={handleCopyPhone}
+                className="h-12 rounded border border-white/35 px-4 text-left text-lg font-semibold text-gray-100 transition hover:border-white/60"
+              >
+                {companyPhone}
+              </button>
+              <a
+                href={`tel:${companyPhone.replace(/[^\d+]/g, '')}`}
+                onClick={closeCallPopup}
+                className="inline-flex h-12 items-center justify-center rounded bg-[radial-gradient(ellipse_89.93%_82.48%_at_36.11%_34.00%,_#F2861F_0%,_#EB8121_19%,_#E57C22_39%,_#893F16_100%)] px-6 font-semibold text-gray-100 transition hover:brightness-110"
+              >
+                Позвонить
+              </a>
+            </div>
+
+            <div className="mt-8 border-t border-white/15 pt-6">
+              <p className="text-lg font-semibold text-gray-100">Или оставьте заявку на обратный звонок</p>
+              <form onSubmit={handleCallbackSubmit} className="mt-4 space-y-4">
+                <input
+                  type="text"
+                  name="name"
+                  value={callbackData.name}
+                  onChange={handleCallbackFieldChange}
+                  placeholder="Ваше имя"
+                  required
+                  className="h-11 w-full rounded border border-white/30 bg-transparent px-4 text-gray-100 outline-none focus:border-[#EB8121]"
+                />
+                <input
+                  type="tel"
+                  name="phone"
+                  value={callbackData.phone}
+                  onChange={handleCallbackFieldChange}
+                  placeholder="Телефон"
+                  required
+                  className="h-11 w-full rounded border border-white/30 bg-transparent px-4 text-gray-100 outline-none focus:border-[#EB8121]"
+                />
+                <button
+                  type="submit"
+                  disabled={isCallbackSubmitting}
+                  className="inline-flex h-12 w-full items-center justify-center rounded bg-[radial-gradient(ellipse_89.93%_82.48%_at_36.11%_34.00%,_#F2861F_0%,_#EB8121_19%,_#E57C22_39%,_#893F16_100%)] px-6 font-semibold text-gray-100 transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70"
+                >
+                  {isCallbackSubmitting ? 'Отправка...' : 'Заказать обратный звонок'}
+                </button>
+              </form>
+            </div>
+
+            {callbackStatus.message ? (
+              <p className={`mt-4 text-sm ${callbackStatus.type === 'error' ? 'text-red-300' : 'text-emerald-300'}`}>
+                {callbackStatus.message}
+              </p>
+            ) : null}
+          </div>
+        </div>
+      ) : null}
 
       <section id="painted" className="mx-auto max-w-[1240px] px-6 py-24 lg:px-8">
         <h3 className="text-center text-4xl font-semibold leading-8">Что красим</h3>
