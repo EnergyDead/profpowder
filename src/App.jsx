@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 const benefits = [
   {
@@ -150,6 +150,82 @@ const paintedItemDetails = {
 
 function App() {
   const [selectedPaintedItem, setSelectedPaintedItem] = useState(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    comment: ''
+  });
+  const [photoFile, setPhotoFile] = useState(null);
+  const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const orderFormRef = useRef(null);
+
+  const scrollToOrderForm = () => {
+    setSelectedPaintedItem(null);
+
+    window.requestAnimationFrame(() => {
+      orderFormRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  };
+
+  const handleFieldChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleFileChange = (event) => {
+    const [file] = event.target.files;
+    setPhotoFile(file || null);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setSubmitStatus({ type: '', message: '' });
+    setIsSubmitting(true);
+
+    try {
+      const payload = new FormData();
+      payload.append('name', formData.name);
+      payload.append('phone', formData.phone);
+      payload.append('comment', formData.comment || '—');
+      payload.append('_subject', 'Новая заявка с сайта Профи Порошок');
+      payload.append('_template', 'table');
+      payload.append('_captcha', 'false');
+      payload.append('_autoresponse', 'Спасибо! Мы получили вашу заявку и скоро свяжемся с вами.');
+      payload.append('_honey', '');
+
+      if (photoFile) {
+        payload.append('attachment', photoFile);
+      }
+
+      const response = await fetch('https://formsubmit.co/ajax/rusvas012@gmail.com', {
+        method: 'POST',
+        body: payload,
+        headers: {
+          Accept: 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error('Не удалось отправить форму.');
+      }
+
+      setSubmitStatus({
+        type: 'success',
+        message: 'Заявка отправлена. Мы свяжемся с вами в ближайшее время.'
+      });
+      setFormData({ name: '', phone: '', comment: '' });
+      setPhotoFile(null);
+    } catch (error) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'Ошибка отправки. Попробуйте еще раз или свяжитесь с нами по телефону.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const selectedDetails = selectedPaintedItem ? paintedItemDetails[selectedPaintedItem.title] : null;
   const itemSubtitle = selectedDetails?.subtitle || selectedPaintedItem?.subtitle;
   const itemPriceFrom = selectedDetails?.priceFrom || selectedPaintedItem?.priceFrom;
@@ -228,7 +304,10 @@ function App() {
           <div className="mx-auto mt-14 w-full max-w-[700px] rounded border border-white/20 bg-black/40 px-8 py-10 text-center">
             <p className="text-5xl font-semibold leading-none">Цена</p>
             <p className="mt-4 text-5xl font-light leading-none">{itemPriceFrom}</p>
-            <button className="mt-8 inline-flex h-14 items-center justify-center rounded-[5px] bg-[radial-gradient(ellipse_89.93%_82.48%_at_36.11%_34.00%,_#F2861F_0%,_#EB8121_19%,_#E57C22_39%,_#893F16_100%)] px-7 py-4 text-lg font-semibold leading-6 text-gray-200 shadow-[0_4px_4px_rgba(0,0,0,0.25)] transition hover:brightness-110">
+            <button
+              onClick={scrollToOrderForm}
+              className="mt-8 inline-flex h-14 items-center justify-center rounded-[5px] bg-[radial-gradient(ellipse_89.93%_82.48%_at_36.11%_34.00%,_#F2861F_0%,_#EB8121_19%,_#E57C22_39%,_#893F16_100%)] px-7 py-4 text-lg font-semibold leading-6 text-gray-200 shadow-[0_4px_4px_rgba(0,0,0,0.25)] transition hover:brightness-110"
+            >
               Оставить заявку
             </button>
           </div>
@@ -266,7 +345,10 @@ function App() {
               <a href="#painted" className="transition hover:text-white">
                 Что красим
               </a>
-              <button className="rounded border border-white/35 px-6 py-3 text-sm font-semibold leading-4 transition hover:border-white/60 hover:bg-white/5">
+              <button
+                onClick={scrollToOrderForm}
+                className="rounded border border-white/35 px-6 py-3 text-sm font-semibold leading-4 transition hover:border-white/60 hover:bg-white/5"
+              >
                 Заказать звонок
               </button>
             </nav>
@@ -299,7 +381,10 @@ function App() {
               ))}
             </div>
 
-            <button className="mt-8 inline-flex h-14 items-center justify-center rounded-[5px] bg-[radial-gradient(ellipse_89.93%_82.48%_at_36.11%_34.00%,_#F2861F_0%,_#EB8121_19%,_#E57C22_39%,_#893F16_100%)] px-7 py-4 text-lg font-semibold leading-6 text-gray-200 shadow-[0_4px_4px_rgba(0,0,0,0.25)] transition hover:brightness-110">
+            <button
+              onClick={scrollToOrderForm}
+              className="mt-8 inline-flex h-14 items-center justify-center rounded-[5px] bg-[radial-gradient(ellipse_89.93%_82.48%_at_36.11%_34.00%,_#F2861F_0%,_#EB8121_19%,_#E57C22_39%,_#893F16_100%)] px-7 py-4 text-lg font-semibold leading-6 text-gray-200 shadow-[0_4px_4px_rgba(0,0,0,0.25)] transition hover:brightness-110"
+            >
               Оставить заявку
             </button>
           </div>
@@ -437,13 +522,21 @@ function App() {
         }}
       >
         <div className="mx-auto flex max-w-[1240px] flex-col items-center px-6 pb-14 pt-8 lg:px-8">
-          <div className="w-full max-w-[560px] rounded-[5px] border border-white/30 bg-black/15 p-10 md:p-12">
+          <form
+            ref={orderFormRef}
+            onSubmit={handleSubmit}
+            className="w-full max-w-[560px] rounded-[5px] border border-white/30 bg-black/15 p-10 md:p-12"
+          >
             <label className="block text-base font-medium leading-7 text-gray-200" htmlFor="order-name">
               Ваше имя*
             </label>
             <input
               id="order-name"
               type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleFieldChange}
+              required
               className="mt-2 h-12 w-full rounded-[5px] border border-white/35 bg-transparent px-4 text-base text-gray-100 outline-none placeholder:text-gray-400/80 focus:border-[#EB8121]"
             />
 
@@ -453,6 +546,10 @@ function App() {
             <input
               id="order-phone"
               type="tel"
+              name="phone"
+              value={formData.phone}
+              onChange={handleFieldChange}
+              required
               className="mt-2 h-12 w-full rounded-[5px] border border-white/35 bg-transparent px-4 text-base text-gray-100 outline-none placeholder:text-gray-400/80 focus:border-[#EB8121]"
             />
 
@@ -462,6 +559,9 @@ function App() {
             <textarea
               id="order-comment"
               rows={4}
+              name="comment"
+              value={formData.comment}
+              onChange={handleFieldChange}
               className="mt-2 w-full resize-none rounded-[5px] border border-white/35 bg-transparent p-4 text-base text-gray-100 outline-none placeholder:text-gray-400/80 focus:border-[#EB8121]"
             />
 
@@ -472,12 +572,24 @@ function App() {
               <span className="text-3xl font-medium leading-7 text-[#EB8121]">+</span>
               <span className="ml-6 text-base font-medium leading-7 text-gray-200">Прикрепить фото</span>
             </label>
-            <input id="order-photo" type="file" className="hidden" />
+            <input id="order-photo" type="file" className="hidden" onChange={handleFileChange} />
+            {photoFile ? (
+              <p className="mt-2 text-sm text-gray-300">Файл: {photoFile.name}</p>
+            ) : null}
 
-            <button className="mt-24 inline-flex h-16 w-full items-center justify-center rounded-[5px] bg-[radial-gradient(ellipse_89.93%_82.48%_at_36.11%_34.00%,_#F2861F_0%,_#EB8121_19%,_#E57C22_39%,_#893F16_100%)] px-7 py-4 text-center text-4xl font-semibold leading-6 text-gray-200 shadow-[0_4px_4px_rgba(0,0,0,0.25)] transition hover:brightness-110">
-              Заказать расчет
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="mt-24 inline-flex h-16 w-full items-center justify-center rounded-[5px] bg-[radial-gradient(ellipse_89.93%_82.48%_at_36.11%_34.00%,_#F2861F_0%,_#EB8121_19%,_#E57C22_39%,_#893F16_100%)] px-7 py-4 text-center text-4xl font-semibold leading-6 text-gray-200 shadow-[0_4px_4px_rgba(0,0,0,0.25)] transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70"
+            >
+              {isSubmitting ? 'Отправка...' : 'Заказать расчет'}
             </button>
-          </div>
+            {submitStatus.message ? (
+              <p className={`mt-4 text-center text-sm ${submitStatus.type === 'success' ? 'text-emerald-300' : 'text-red-300'}`}>
+                {submitStatus.message}
+              </p>
+            ) : null}
+          </form>
 
           <div className="mt-10 flex flex-col items-center gap-8 pb-2">
             <a href="#hero" className="flex items-center gap-3">
