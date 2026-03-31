@@ -401,12 +401,12 @@ function App() {
       <section id="contacts" className="mx-auto max-w-[1240px] px-6 pb-24 lg:px-8">
         <h3 className="text-center text-4xl font-semibold leading-8">Контакты</h3>
 
-        <div className="mt-8 grid gap-6 rounded-xl border border-white/25 bg-black/25 p-5 lg:grid-cols-[420px_1fr]">
-          <div className="rounded-lg border border-white/15 bg-black/35 p-8 md:p-10">
-            <p className="text-4xl font-semibold leading-tight text-gray-100 md:text-5xl">Профи Порошок</p>
-            <p className="mt-4 text-3xl font-normal leading-tight text-gray-200 md:text-[34px]">г. Йошкар-Ола, ул. Кирова, 6</p>
+        <div className="mt-8 grid items-stretch gap-6 rounded-2xl border border-white/20 bg-black/20 p-4 md:p-6 lg:grid-cols-[400px_1fr]">
+          <div className="flex h-full flex-col rounded-xl border border-white/15 bg-black/35 p-6 md:p-8">
+            <p className="text-4xl font-semibold leading-[1.05] text-gray-100 md:text-[56px]">Профи Порошок</p>
+            <p className="mt-5 text-2xl font-normal leading-snug text-gray-200 md:text-[46px]">г. Йошкар-Ола, ул. Кирова, 6</p>
 
-            <div className="mt-8 space-y-4 text-2xl leading-tight text-gray-200 md:text-[32px]">
+            <div className="mt-8 space-y-4 text-[38px] leading-[1.08] text-gray-200 md:text-[50px]">
               <p>+7 (902) 124-33-69</p>
               <a className="block underline underline-offset-4 transition hover:text-white" href="mailto:porochok12@gmail.com">
                 porochok12@gmail.com
@@ -417,7 +417,7 @@ function App() {
             </div>
           </div>
 
-          <div className="h-[340px] overflow-hidden rounded-lg border border-white/20 bg-black/40">
+          <div className="h-[340px] overflow-hidden rounded-xl border border-white/20 bg-black/40 md:h-auto md:min-h-[360px]">
             <iframe
               title="Карта Яндекс — Профи Порошок"
               src="https://yandex.ru/map-widget/v1/?ll=47.890458%2C56.631754&pt=47.890458%2C56.631754%2Cpm2rdm&z=17"
