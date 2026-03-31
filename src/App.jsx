@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 
 const benefits = [
   {
@@ -30,23 +30,35 @@ const benefits = [
 const facts = ['От 1 дня', 'Гарантия качества', 'Работаем с любыми изделиями'];
 
 const paintedItems = [
-  { title: 'Металлопрокат', image: '/images/painted/metalloprokat.png' },
-  { title: 'Ограждения\nи ворота', image: '/images/painted/fence-gate.png' },
-  { title: 'Автомобильные диски\nи мото детали', image: '/images/painted/wheels-moto.png' },
-  { title: 'Мебель', image: '/images/painted/furniture.png' }
-];
-
-const prices = [
-  { title: 'Диски', priceFrom: '2000 ₽', background: '/images/prices/diski-bg.jpg' },
-  { title: 'Детали', priceFrom: '500 ₽', background: '/images/prices/details-bg.jpg' },
   {
-    title: 'Конструкции',
-    priceFrom: '700 ₽/м²',
-    background: '/images/prices/constructions-bg.jpg'
+    title: 'Металлопрокат',
+    image: '/images/painted/metalloprokat.png',
+    cardTitle: 'Металлопрокат',
+    subtitle: 'Покраска металлопроката',
+    priceFrom: 'от 700 ₽/м²'
+  },
+  {
+    title: 'Ограждения\nи ворота',
+    image: '/images/painted/fence-gate.png',
+    cardTitle: 'Ограждения и ворота',
+    subtitle: 'Покраска ограждений и ворот',
+    priceFrom: 'от 1200 ₽'
+  },
+  {
+    title: 'Автомобильные диски\nи мото детали',
+    image: '/images/painted/wheels-moto.png',
+    cardTitle: 'Автомобильные диски',
+    subtitle: 'Покраска металлических изделий',
+    priceFrom: 'от 1500 ₽'
+  },
+  {
+    title: 'Мебель',
+    image: '/images/painted/furniture.png',
+    cardTitle: 'Металлическая мебель',
+    subtitle: 'Покраска мебели и интерьерных деталей',
+    priceFrom: 'от 1000 ₽'
   }
 ];
-
-const categories = ['Все', 'Диски', 'Ограждения', 'Детали', 'Мебель'];
 
 const processSteps = [
   'Бесплатно уточним\nстоимость',
@@ -55,71 +67,46 @@ const processSteps = [
   'Даем полную\nгарантию'
 ];
 
-const workPairs = [
-  {
-    category: 'Диски',
-    before: 'https://placehold.co/606x284/4a4a4a/E8E8E8?text=Диски+до',
-    after: 'https://placehold.co/606x284/6a6a6a/E8E8E8?text=Диски+после'
-  },
-  {
-    category: 'Ограждения',
-    before: 'https://placehold.co/606x284/4f565c/E8E8E8?text=Ограждения+до',
-    after: 'https://placehold.co/606x284/687178/E8E8E8?text=Ограждения+после'
-  },
-  {
-    category: 'Детали',
-    before: 'https://placehold.co/606x284/454545/E8E8E8?text=Детали+до',
-    after: 'https://placehold.co/606x284/616161/E8E8E8?text=Детали+после'
-  },
-  {
-    category: 'Мебель',
-    before: 'https://placehold.co/606x284/3d4450/E8E8E8?text=Мебель+до',
-    after: 'https://placehold.co/606x284/5d6673/E8E8E8?text=Мебель+после'
-  }
-];
-
-const partners = [
-  { category: 'Диски', name: 'Disk Service', logo: 'DS' },
-  { category: 'Ограждения', name: 'Steel Guard', logo: 'SG' },
-  { category: 'Детали', name: 'MetaLine', logo: 'ML' },
-  { category: 'Мебель', name: 'Loft Home', logo: 'LH' },
-  { category: 'Диски', name: 'R17 Center', logo: 'R17' },
-  { category: 'Ограждения', name: 'FencePro', logo: 'FP' }
-];
-
-const activeFilterClass =
-  'bg-[radial-gradient(ellipse_89.93%_82.48%_at_36.11%_34.00%,_#F2861F_0%,_#EB8121_19%,_#E57C22_39%,_#893F16_100%)] border-transparent';
-
-const baseFilterClass = 'border border-black/80 bg-transparent hover:border-white/40';
-
 function App() {
-  const [workCategory, setWorkCategory] = useState('Все');
-  const [partnerCategory, setPartnerCategory] = useState('Все');
-  const [workIndex, setWorkIndex] = useState(0);
+  const [selectedPaintedItem, setSelectedPaintedItem] = useState(null);
 
-  const filteredWorks = useMemo(
-    () => (workCategory === 'Все' ? workPairs : workPairs.filter((item) => item.category === workCategory)),
-    [workCategory]
-  );
+  if (selectedPaintedItem) {
+    return (
+      <div
+        className="min-h-screen bg-cover bg-center bg-no-repeat px-6 py-16 text-gray-100"
+        style={{ backgroundImage: "url('/backgrounds/bg-2.png')" }}
+      >
+        <div className="mx-auto max-w-[1240px]">
+          <button
+            onClick={() => setSelectedPaintedItem(null)}
+            className="mb-10 text-sm font-semibold uppercase tracking-wide text-gray-300 transition hover:text-white"
+          >
+            ← Назад к списку
+          </button>
 
-  const filteredPartners = useMemo(
-    () =>
-      partnerCategory === 'Все'
-        ? partners
-        : partners.filter((item) => item.category === partnerCategory),
-    [partnerCategory]
-  );
+          <h1 className="text-center text-4xl font-semibold leading-tight md:text-5xl">
+            {selectedPaintedItem.title}
+          </h1>
+          <p className="mt-3 text-center text-base text-gray-300">{selectedPaintedItem.subtitle}</p>
 
-  const currentWork = filteredWorks[workIndex % filteredWorks.length] ?? workPairs[0];
+          <article className="mx-auto mt-12 w-full max-w-[360px] overflow-hidden rounded border border-white/30 bg-black/55">
+            <img src={selectedPaintedItem.image} alt={selectedPaintedItem.cardTitle} className="h-[250px] w-full object-cover" />
+            <div className="flex h-16 items-center justify-center border-t border-white/25 px-4">
+              <h2 className="text-center text-3xl font-semibold leading-tight">{selectedPaintedItem.cardTitle}</h2>
+            </div>
+          </article>
 
-  const showNextWork = () => {
-    setWorkIndex((prev) => (prev + 1) % filteredWorks.length);
-  };
-
-  const selectWorkCategory = (category) => {
-    setWorkCategory(category);
-    setWorkIndex(0);
-  };
+          <div className="mx-auto mt-14 w-full max-w-[700px] rounded border border-white/20 bg-black/40 px-8 py-10 text-center">
+            <p className="text-5xl font-semibold leading-none">Цена</p>
+            <p className="mt-4 text-5xl font-light leading-none">{selectedPaintedItem.priceFrom}</p>
+            <button className="mt-8 inline-flex h-14 items-center justify-center rounded-[5px] bg-[radial-gradient(ellipse_89.93%_82.48%_at_36.11%_34.00%,_#F2861F_0%,_#EB8121_19%,_#E57C22_39%,_#893F16_100%)] px-7 py-4 text-lg font-semibold leading-6 text-gray-200 shadow-[0_4px_4px_rgba(0,0,0,0.25)] transition hover:brightness-110">
+              Оставить заявку
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-[#06090d] text-gray-200 font-['Montserrat']">
@@ -149,12 +136,6 @@ function App() {
               </a>
               <a href="#painted" className="transition hover:text-white">
                 Что красим
-              </a>
-              <a href="#prices" className="transition hover:text-white">
-                Цены
-              </a>
-              <a href="#works" className="transition hover:text-white">
-                Наши работы
               </a>
               <button className="rounded border border-white/35 px-6 py-3 text-sm font-semibold leading-4 transition hover:border-white/60 hover:bg-white/5">
                 Заказать звонок
@@ -227,111 +208,16 @@ function App() {
 
         <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {paintedItems.map((item) => (
-            <article key={item.title} className="overflow-hidden rounded border border-white/25 bg-black/40">
+            <button
+              key={item.title}
+              onClick={() => setSelectedPaintedItem(item)}
+              className="overflow-hidden rounded border border-white/25 bg-black/40 text-left transition hover:border-white/60 hover:brightness-110"
+            >
               <div className="h-64 w-full bg-cover bg-center" style={{ backgroundImage: `url('${item.image}')` }} />
               <div className="flex h-14 items-center justify-center border-t border-white/25 px-4">
                 <h4 className="whitespace-pre-line text-center text-lg font-semibold leading-4">{item.title}</h4>
               </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section id="prices" className="mx-auto max-w-[1240px] px-6 py-24 lg:px-8">
-        <h3 className="text-center text-4xl font-semibold leading-8">Цены</h3>
-        <p className="mx-auto mt-7 max-w-[740px] text-center text-base font-normal leading-4 text-gray-200">
-          Рассчитаем точную стоимость за 5 минут. Пришлите фото — подскажем цену и сроки
-        </p>
-
-        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {prices.map((item) => (
-            <article
-              key={item.title}
-              className="rounded border border-white/25 bg-black/50 bg-cover bg-center px-8 pb-10 pt-8"
-              style={{ backgroundImage: `url('${item.background}')` }}
-            >
-              <h4 className="text-center text-5xl font-semibold leading-8">{item.title}</h4>
-              <p className="mt-6 text-center text-5xl font-light leading-8">
-                от <span className="font-semibold text-6xl">{item.priceFrom}</span>
-              </p>
-              <button className="mx-auto mt-10 flex h-14 items-center justify-center rounded-[5px] bg-[radial-gradient(ellipse_89.93%_82.48%_at_36.11%_34.00%,_#F2861F_0%,_#EB8121_19%,_#E57C22_39%,_#893F16_100%)] px-7 py-4 text-lg font-semibold leading-6 text-gray-200 shadow-[0_4px_4px_rgba(0,0,0,0.25)] transition hover:brightness-110">
-                Оставить заявку
-              </button>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section id="works" className="mx-auto max-w-[1240px] px-6 pb-24 pt-24 lg:px-8">
-        <h3 className="text-center text-4xl font-semibold leading-8">Наши работы</h3>
-        <p className="mt-6 text-center text-base font-normal leading-3 text-gray-200">
-          Посмотрите наши работы: оцените результат до и после покраски
-        </p>
-
-        <div className="mt-10 flex flex-wrap justify-center gap-3">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => selectWorkCategory(category)}
-              className={`h-14 rounded-[5px] px-7 py-4 text-lg font-semibold leading-6 shadow-[0_4px_4px_rgba(0,0,0,0.25)] transition ${workCategory === category ? activeFilterClass : baseFilterClass}`}
-            >
-              {category}
             </button>
-          ))}
-        </div>
-
-        <div className="mt-9 grid items-center gap-6 lg:grid-cols-[1fr_auto_1fr]">
-          <article className="overflow-hidden rounded border border-black bg-black/40">
-            <img src={currentWork.before} alt={`До покраски (${currentWork.category})`} className="h-72 w-full object-cover" />
-            <div className="flex h-12 items-center justify-center border-t border-black px-4">
-              <p className="text-center text-lg font-semibold leading-4">ДО порошковой покраски</p>
-            </div>
-          </article>
-
-          <button
-            onClick={showNextWork}
-            aria-label="Показать следующую пару"
-            className="mx-auto flex h-20 w-20 items-center justify-center rounded-full border border-black bg-black text-3xl font-semibold text-[#D9D9D9] transition hover:scale-105 hover:text-white"
-          >
-            ›
-          </button>
-
-          <article className="overflow-hidden rounded border border-black bg-black/40">
-            <img src={currentWork.after} alt={`После покраски (${currentWork.category})`} className="h-72 w-full object-cover" />
-            <div className="flex h-12 items-center justify-center border-t border-black px-4">
-              <p className="text-center text-lg font-semibold leading-4">ПОСЛЕ порошковой покраски</p>
-            </div>
-          </article>
-        </div>
-
-        <h3 className="mt-12 text-center text-4xl font-semibold leading-8">Наши партнеры</h3>
-
-        <div className="mt-10 flex flex-wrap justify-center gap-3">
-          {categories.map((category) => (
-            <button
-              key={`partner-${category}`}
-              onClick={() => setPartnerCategory(category)}
-              className={`h-14 rounded-[5px] px-7 py-4 text-lg font-semibold leading-6 shadow-[0_4px_4px_rgba(0,0,0,0.25)] transition ${partnerCategory === category ? activeFilterClass : baseFilterClass}`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredPartners.map((partner) => (
-            <article
-              key={`${partner.name}-${partner.category}`}
-              className="flex h-24 items-center gap-4 rounded border border-black bg-[#000000] px-4"
-            >
-              <div className="flex h-14 w-14 items-center justify-center rounded bg-[#D9D9D9] text-sm font-semibold text-black">
-                {partner.logo}
-              </div>
-              <div>
-                <p className="text-lg font-semibold leading-6">{partner.name}</p>
-                <p className="text-sm text-gray-400">{partner.category}</p>
-              </div>
-            </article>
           ))}
         </div>
       </section>
