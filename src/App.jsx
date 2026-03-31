@@ -67,8 +67,36 @@ const processSteps = [
   'Даем полную\nгарантию'
 ];
 
+const paintedItemDetails = {
+  Мебель: {
+    subtitle: 'Покраска металлоизделий',
+    priceFrom: 'от 500 ₽',
+    gallery: [
+      {
+        title: 'Стойка для верхней одежды',
+        color: 'Ral 9005 муар',
+        image: '/images/painted/furniture.png'
+      },
+      {
+        title: 'Мебель для дома',
+        color: 'Ral 9005 муар',
+        image: '/images/painted/metalloprokat.png'
+      },
+      {
+        title: 'Плинтус',
+        color: 'Ral 9005 муар',
+        image: '/images/painted/fence-gate.png'
+      }
+    ]
+  }
+};
+
 function App() {
   const [selectedPaintedItem, setSelectedPaintedItem] = useState(null);
+  const selectedDetails = selectedPaintedItem ? paintedItemDetails[selectedPaintedItem.title] : null;
+  const itemSubtitle = selectedDetails?.subtitle || selectedPaintedItem?.subtitle;
+  const itemPriceFrom = selectedDetails?.priceFrom || selectedPaintedItem?.priceFrom;
+  const gallery = selectedDetails?.gallery;
 
   if (selectedPaintedItem) {
     return (
@@ -79,7 +107,7 @@ function App() {
         <div className="mx-auto max-w-[1240px]">
           <button
             onClick={() => setSelectedPaintedItem(null)}
-            className="mb-10 text-sm font-semibold uppercase tracking-wide text-gray-300 transition hover:text-white"
+            className="mb-10 inline-flex items-center rounded-md border border-white/45 bg-black/45 px-5 py-3 text-sm font-semibold uppercase tracking-wide text-white shadow-[0_4px_16px_rgba(0,0,0,0.35)] transition hover:border-white hover:bg-black/60"
           >
             ← Назад к списку
           </button>
@@ -87,18 +115,32 @@ function App() {
           <h1 className="text-center text-4xl font-semibold leading-tight md:text-5xl">
             {selectedPaintedItem.title}
           </h1>
-          <p className="mt-3 text-center text-base text-gray-300">{selectedPaintedItem.subtitle}</p>
+          <p className="mt-3 text-center text-base text-gray-300">{itemSubtitle}</p>
 
-          <article className="mx-auto mt-12 w-full max-w-[360px] overflow-hidden rounded border border-white/30 bg-black/55">
-            <img src={selectedPaintedItem.image} alt={selectedPaintedItem.cardTitle} className="h-[250px] w-full object-cover" />
-            <div className="flex h-16 items-center justify-center border-t border-white/25 px-4">
-              <h2 className="text-center text-3xl font-semibold leading-tight">{selectedPaintedItem.cardTitle}</h2>
+          {gallery ? (
+            <div className="mx-auto mt-10 grid max-w-[980px] gap-5 md:grid-cols-3">
+              {gallery.map((card) => (
+                <article key={card.title} className="overflow-hidden rounded border border-white/35 bg-black/60">
+                  <img src={card.image} alt={card.title} className="h-[250px] w-full object-cover" />
+                  <div className="border-t border-white/25 bg-black/70 px-4 py-3 text-center">
+                    <h2 className="text-[34px] font-semibold leading-[1.05]">{card.title}</h2>
+                    <p className="text-[34px] font-semibold leading-[1.05]">{card.color}</p>
+                  </div>
+                </article>
+              ))}
             </div>
-          </article>
+          ) : (
+            <article className="mx-auto mt-12 w-full max-w-[360px] overflow-hidden rounded border border-white/30 bg-black/55">
+              <img src={selectedPaintedItem.image} alt={selectedPaintedItem.cardTitle} className="h-[250px] w-full object-cover" />
+              <div className="flex h-16 items-center justify-center border-t border-white/25 px-4">
+                <h2 className="text-center text-3xl font-semibold leading-tight">{selectedPaintedItem.cardTitle}</h2>
+              </div>
+            </article>
+          )}
 
           <div className="mx-auto mt-14 w-full max-w-[700px] rounded border border-white/20 bg-black/40 px-8 py-10 text-center">
             <p className="text-5xl font-semibold leading-none">Цена</p>
-            <p className="mt-4 text-5xl font-light leading-none">{selectedPaintedItem.priceFrom}</p>
+            <p className="mt-4 text-5xl font-light leading-none">{itemPriceFrom}</p>
             <button className="mt-8 inline-flex h-14 items-center justify-center rounded-[5px] bg-[radial-gradient(ellipse_89.93%_82.48%_at_36.11%_34.00%,_#F2861F_0%,_#EB8121_19%,_#E57C22_39%,_#893F16_100%)] px-7 py-4 text-lg font-semibold leading-6 text-gray-200 shadow-[0_4px_4px_rgba(0,0,0,0.25)] transition hover:brightness-110">
               Оставить заявку
             </button>
