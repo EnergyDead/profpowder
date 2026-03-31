@@ -96,32 +96,32 @@ const paintedItemDetails = {
       {
         title: 'Кронштейны кондиционера',
         color: 'Ral 9003 шагр, Ral 1015 шагр,\nRal 8017 шагр',
-        image: '/images/painted/fence-gate.png'
+        image: '/images/painted/m-1.png'
       },
       {
         title: 'Металлокассеты',
         color: 'Ral 5012 гл.мат',
-        image: '/images/painted/metalloprokat.png'
+        image: '/images/painted/m-2.png'
       },
       {
         title: 'Металлокассеты',
         color: 'Ral 6018 гл.мат',
-        image: '/images/painted/wheels-moto.png'
+        image: '/images/painted/m-3.png'
       },
       {
         title: 'Решетки кондиционера',
         color: 'Ral 9003 гл.мат',
-        image: '/images/painted/furniture.png'
+        image: '/images/painted/m-4.png'
       },
       {
         title: 'Перилла',
         color: 'Ral 7024 шарень',
-        image: '/images/painted/metalloprokat.png'
+        image: '/images/painted/m-5.png'
       },
       {
         title: 'Монокосоур',
         color: 'Ral 1015 муар',
-        image: '/images/painted/fence-gate.png'
+        image: '/images/painted/m-6.png'
       }
     ]
   },
@@ -132,17 +132,17 @@ const paintedItemDetails = {
       {
         title: 'Стойка для верхней одежды',
         color: 'Ral 9005 муар',
-        image: '/images/painted/furniture.png'
+        image: '/images/painted/h-1.png'
       },
       {
         title: 'Мебель для дома',
         color: 'Ral 9005 муар',
-        image: '/images/painted/metalloprokat.png'
+        image: '/images/painted/h-2.png'
       },
       {
         title: 'Плинтус',
         color: 'Ral 9005 муар',
-        image: '/images/painted/fence-gate.png'
+        image: '/images/painted/h-3.png'
       }
     ]
   }
