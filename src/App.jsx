@@ -377,24 +377,22 @@ function App() {
         className="mx-auto max-w-[1240px] px-6 pb-24 lg:px-8"
       >
         <div className="overflow-hidden rounded bg-black/30">
-          <div
-            className="relative min-h-[280px] px-6 py-10 md:min-h-[360px] md:px-10"
-          >
-            <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center">
-              <img
-                src="/images/prices/container.png"
-                alt=""
-                aria-hidden="true"
-                className="h-[78%] w-[78%] object-contain object-center opacity-95 md:h-[72%] md:w-[72%]"
-              />
-            </div>
-            <div className="relative z-10">
+          <div className="px-6 py-10 md:px-10">
+            <div>
               <h3 className="text-center text-4xl font-semibold leading-tight md:text-5xl">
                 Габариты печи
               </h3>
               <p className="mt-4 text-center text-base text-gray-300 md:text-lg">
                 Позволяет производить порошковую окраску габаритных металлоизделий
               </p>
+            </div>
+            <div className="mt-6 flex justify-center md:mt-8">
+              <img
+                src="/images/prices/container.png"
+                alt=""
+                aria-hidden="true"
+                className="w-[88%] translate-x-[15%] object-contain object-center opacity-95 md:w-[72%]"
+              />
             </div>
           </div>
         </div>
