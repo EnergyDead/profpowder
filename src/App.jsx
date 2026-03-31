@@ -401,27 +401,26 @@ function App() {
       <section id="contacts" className="mx-auto max-w-[1240px] px-6 pb-24 lg:px-8">
         <h3 className="text-center text-4xl font-semibold leading-8">Контакты</h3>
 
-        <div className="mt-8 grid gap-6 rounded border border-black p-5 lg:grid-cols-[350px_1fr]">
-          <div className="rounded bg-[#0b0f14] p-5">
-            <p className="text-center text-4xl font-semibold leading-9 text-gray-200">Профи Порошок</p>
-            <p className="mt-8 text-center text-2xl font-normal leading-4 text-gray-200">
-              г. Йошкар-Ола, ул. Кирова, 6
-            </p>
-            <div className="mt-8 space-y-6 text-2xl font-normal leading-4 text-gray-200">
-              <p className="text-center">+7 (902) 124-33-69</p>
-              <a className="block text-center underline hover:text-white" href="mailto:porochok12gmail.com">
-                porochok12gmail.com
+        <div className="mt-8 grid gap-6 rounded-xl border border-white/25 bg-black/25 p-5 lg:grid-cols-[420px_1fr]">
+          <div className="rounded-lg border border-white/15 bg-black/35 p-8 md:p-10">
+            <p className="text-5xl font-semibold leading-tight text-gray-100">Профи Порошок</p>
+            <p className="mt-4 text-4xl font-normal leading-tight text-gray-200">г. Йошкар-Ола, ул. Кирова, 6</p>
+
+            <div className="mt-8 space-y-4 text-3xl leading-tight text-gray-200">
+              <p>+7 (902) 124-33-69</p>
+              <a className="block underline underline-offset-4 transition hover:text-white" href="mailto:porochok12@gmail.com">
+                porochok12@gmail.com
               </a>
-              <a className="block text-center hover:text-white" href="https://t.me/DLPowder" target="_blank" rel="noreferrer">
+              <a className="block transition hover:text-white" href="https://t.me/DLPowder" target="_blank" rel="noreferrer">
                 @DLPowder
               </a>
             </div>
           </div>
 
-          <div className="h-80 overflow-hidden rounded border border-black">
+          <div className="h-[340px] overflow-hidden rounded-lg border border-white/20 bg-black/40">
             <iframe
               title="Карта 2ГИС — Профи Порошок"
-              src="https://widgets.2gis.com/widget?type=firmsonmap&opts=%7B%22city%22%3A%22yoshkarola%22%2C%22search%22%3A%22%D0%9A%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%2C%206%22%7D"
+              src="https://widgets.2gis.com/widget?type=map&opts=%7B%22city%22%3A%22yoshkar-ola%22%2C%22zoom%22%3A17%2C%22center%22%3A%5B47.890458%2C56.631754%5D%2C%22marker%22%3A%5B47.890458%2C56.631754%5D%7D"
               className="h-full w-full"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
