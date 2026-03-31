@@ -403,10 +403,10 @@ function App() {
 
         <div className="mt-8 grid gap-6 rounded-xl border border-white/25 bg-black/25 p-5 lg:grid-cols-[420px_1fr]">
           <div className="rounded-lg border border-white/15 bg-black/35 p-8 md:p-10">
-            <p className="text-5xl font-semibold leading-tight text-gray-100">Профи Порошок</p>
-            <p className="mt-4 text-4xl font-normal leading-tight text-gray-200">г. Йошкар-Ола, ул. Кирова, 6</p>
+            <p className="text-4xl font-semibold leading-tight text-gray-100 md:text-5xl">Профи Порошок</p>
+            <p className="mt-4 text-3xl font-normal leading-tight text-gray-200 md:text-[34px]">г. Йошкар-Ола, ул. Кирова, 6</p>
 
-            <div className="mt-8 space-y-4 text-3xl leading-tight text-gray-200">
+            <div className="mt-8 space-y-4 text-2xl leading-tight text-gray-200 md:text-[32px]">
               <p>+7 (902) 124-33-69</p>
               <a className="block underline underline-offset-4 transition hover:text-white" href="mailto:porochok12@gmail.com">
                 porochok12@gmail.com
@@ -419,8 +419,8 @@ function App() {
 
           <div className="h-[340px] overflow-hidden rounded-lg border border-white/20 bg-black/40">
             <iframe
-              title="Карта 2ГИС — Профи Порошок"
-              src="https://widgets.2gis.com/widget?type=map&opts=%7B%22city%22%3A%22yoshkar-ola%22%2C%22zoom%22%3A17%2C%22center%22%3A%5B47.890458%2C56.631754%5D%2C%22marker%22%3A%5B47.890458%2C56.631754%5D%7D"
+              title="Карта Яндекс — Профи Порошок"
+              src="https://yandex.ru/map-widget/v1/?ll=47.890458%2C56.631754&pt=47.890458%2C56.631754%2Cpm2rdm&z=17"
               className="h-full w-full"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
