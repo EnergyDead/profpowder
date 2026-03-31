@@ -68,6 +68,28 @@ const processSteps = [
 ];
 
 const paintedItemDetails = {
+  'Ограждения\nи ворота': {
+    subtitle: 'Покраска ограждений и ворот',
+    priceFrom: 'от 1200 ₽',
+    gallery: [
+      {
+        title: 'Ограждения и ворота',
+        color: 'Порошковая покраска',
+        image: '/images/painted/o-1.png'
+      }
+    ]
+  },
+  'Автомобильные диски\nи мото детали': {
+    subtitle: 'Покраска дисков и мото деталей',
+    priceFrom: 'от 1500 ₽',
+    gallery: [
+      {
+        title: 'Автомобильные диски',
+        color: 'Порошковая покраска',
+        image: '/images/painted/m-3.png'
+      }
+    ]
+  },
   Металлопрокат: {
     subtitle: 'Покраска металлоизделий',
     priceFrom: 'от 600 ₽',
